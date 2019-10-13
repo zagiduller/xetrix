@@ -1,0 +1,110 @@
+syntax = "proto3";
+
+package structs;
+
+import "common.proto";
+import "google/api/annotations.proto";
+
+
+
+
+enum UserStatus {
+    UNVERIFIED = 0;
+    VERIFIED = 1;
+    ADMINISTRATOR = 2;
+}
+
+message User {
+    // @inject_tag: bson:"_id,omitempty"
+    bytes bsonId = 1;
+    string id = 2;
+    string name = 3;
+    string email = 4;
+    string password = 5;
+    UserStatus status = 6;
+
+    //Может быть много полей
+    string createdAt = 7;
+
+    //Инкремент
+    uint32 inc = 8;
+}
+
+
+message Query_User {
+    string id = 1;
+}
+
+message Response_User {
+    bool created = 1;
+    User object = 2;
+    repeated User items = 3;
+    uint32 itemsCount = 4;
+    QueryStatus queryStatus = 5;
+}
+
+
+message EventNewUser {
+    User user = 1;
+}
+
+
+
+
+service ServiceUser {
+    rpc CreateUser (User) returns (Response_User) {}
+
+    rpc GetUser (Query_User) returns (Response_User) {
+        option (google.api.http) = {
+            get: "/_v1/get_user"
+        };
+    }
+
+    rpc FindByNamePassword (Authenticate) returns (Response_User) {
+    }
+
+    rpc GetInfo (Empty) returns (User) {
+        option (google.api.http) = {
+            get: "/_v1/get_info"
+
+        };
+    }
+
+    rpc GetAllUsers (Empty) returns (Response_User) {}
+}
+
+
+message Authenticate {
+    string name = 1;
+    string password = 2;
+    string email = 3;
+}
+
+message Session {
+    string SessionId = 1;
+    User user = 2;
+    string Token = 3;
+}
+
+service ServiceAuth {
+    rpc SignUp (Authenticate) returns (Session) {
+        option (google.api.http) = {
+            post: "/v1/signup"
+            body: "*"
+        };
+    }
+
+    rpc StartSession (Authenticate) returns (Session) {
+        option (google.api.http) = {
+            post: "/v1/start_session",
+            body: "*"
+        };
+    }
+    rpc CloseSession (Empty) returns (Bool) {
+        option (google.api.http) = {
+            get: "/_v1/close_session",
+        };
+    }
+    rpc DecodeSession (Session) returns (User) {
+    }
+}

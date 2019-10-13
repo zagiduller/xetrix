@@ -1,0 +1,99 @@
+syntax = "proto3";
+
+package structs;
+
+//import "user.proto";
+import "currency.proto";
+import "user.proto";
+import "account.proto";
+import "transaction.proto";
+import "payment_system.proto";
+
+import "order.proto";
+
+//import "transaction_processing.proto";
+
+//message
+
+
+message WsCurrencies {
+    repeated structs.Currency currencies = 1;
+    // @inject_tag: json:"namespace,omitempty"
+    string namespace = 4;
+    // @inject_tag: json:"action,omitempty"
+    string action = 5;
+}
+
+message WsAccount {
+    structs.Account account = 1;
+    structs.AccountBalance balance = 2;
+    repeated structs.Tx txs = 3;
+}
+
+message WsAccounts {
+    repeated WsAccount accounts = 1;
+    // @inject_tag: json:"namespace,omitempty"
+    string namespace = 4;
+    // @inject_tag: json:"action,omitempty"
+    string action = 5;
+}
+
+message WsUsers {
+    repeated structs.User users = 1;
+    // @inject_tag: json:"namespace,omitempty"
+    string namespace = 4;
+    // @inject_tag: json:"action,omitempty"
+    string action = 5;
+}
+
+message WsOrders {
+    repeated structs.Order orders = 1;
+    // @inject_tag: json:"namespace,omitempty"
+    string namespace = 4;
+    // @inject_tag: json:"action,omitempty"
+    string action = 5;
+}
+
+message WsContracts {
+    repeated structs.Contract contracts = 1;
+    // @inject_tag: json:"namespace,omitempty"
+    string namespace = 4;
+    // @inject_tag: json:"action,omitempty"
+    string action = 5;
+}
+
+message WsTxs {
+    repeated structs.Tx txs = 1;
+    // @inject_tag: json:"namespace,omitempty"
+    string namespace = 4;
+    // @inject_tag: json:"action,omitempty"
+    string action = 5;
+}
+
+
+message WsWithdrawals {
+    repeated structs.WithdrawalOrder withdrawalOrders = 1;
+    // @inject_tag: json:"namespace,omitempty"
+    string namespace = 4;
+    // @inject_tag: json:"action,omitempty"
+    string action = 5;
+}
+
+message WsMessage {
+    // @inject_tag: json:"data,omitempty"
+    oneof Data {
+        User user = 1;
+        Order order = 2;
+        Contract contract = 3;
+        Tx tx = 4;
+        Account account = 5;
+        AccountBalance accountBalance = 6;
+        WithdrawalOrder withdrawalOrder = 7;
+        Currency currency = 8;
+        EthAddress ethAddress = 9;
+    }
+
+    string namespace = 20;
+    // @inject_tag: json:"action,omitempty"
+    string action = 21;
+}

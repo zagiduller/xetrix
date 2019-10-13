@@ -1,0 +1,142 @@
+syntax = "proto3";
+
+
+package structs;
+
+import "common.proto";
+import "currency.proto";
+import "user.proto";
+import "google/api/annotations.proto";
+
+
+/* enum structs */
+enum AccountType {
+    INTERNAL = 0;
+    EXTERNAL = 1;
+    SYSTEM = 2;
+};
+
+
+/* */
+
+message EventNewAccount {
+    Account account = 1;
+}
+
+message EventAccountUpdate {
+    Account account = 1;
+}
+
+message EventAccountBalanceChange {
+    AccountBalance balance = 1;
+}
+
+message EventBlockhainAccountUpdate {
+    Account account = 1;
+}
+
+/* Query */
+
+message Query_CreateAccount {
+    string ownerId = 1;
+    string currencyId = 2;
+    string currencyName = 3;
+    string currencySymbol = 4;
+    AccountType type = 5;
+    string address = 6;
+    uint64 blockNumber = 7;
+    bool active = 8;
+}
+
+message Query_Account {
+    string accountId = 1;
+    string address = 2;
+    string participantId = 3;
+    string currencySymbol = 4;
+}
+
+// Responses
+
+message Response_Account {
+    bool created = 1;
+    Account object = 2;
+    repeated Account items = 3;
+    uint32 itemsCount = 4;
+    QueryStatus QueryStatus = 5;
+}
+
+message Response_AccountBalance {
+    AccountBalance object = 1;
+    QueryStatus QueryStatus = 2;
+}
+
+/* */
+
+/* Object */
+
+message Account {
+    // @inject_tag: bson:"_id,omitempty"
+    bytes bsonId = 8;
+    string id = 1;
+    string ownerId = 2;
+    Currency currency = 4;
+    string Address = 5;
+    AccountType type = 6;
+
+    enum Status {
+        INACTIVE = 0;
+        ACTIVE = 1;
+    }
+    Status status = 7;
+    string createdAt = 9;
+    uint32 inc = 10;
+    uint64 blockNumber = 11;
+}
+
+message AccountBalance {
+    message LockedReason {
+        enum _LockedReason {
+            REASON_UNVERIFIED_LOCKED = 0;
+            REASON_CONTRACT_LOCKED = 1;
+            REASON_ORDER_LOCKED = 2;
+            REASON_COMMISSION_LOCKED = 3;
+            REASON_WITHDRAWAL_LOCKED = 4;
+        }
+        string contractId = 1;
+        string orderId = 2;
+        string withdrawalOrderId = 3;
+        double amount = 4;
+        _LockedReason reason = 5;
+    }
+    string accountId = 1;
+    string accountAddress = 2;
+    double available = 3;
+    double locked = 4;
+    double unconfirmed = 5;
+
+    string accountOwnerId = 6;
+
+    repeated LockedReason lockedReasons = 7;
+}
+
+
+service ServiceAccount {
+    rpc CreateAccount (Query_CreateAccount) returns (Response_Account) {
+    }
+    rpc GetAllUserAccount (Empty) returns (Response_Account) {
+    }
+
+    rpc GetAllAccount (Empty) returns (Response_Account) {}
+    rpc GetAccount (Query_Account) returns (Response_Account) {
+    }
+    rpc GenerateInternalAccounts (User) returns (Response_Account) {}
+
+    //    rpc Activate (Query_Account) returns (Response_Account) {}
+    //    rpc Deactivate (Query_Account) returns (Response_Account) {}
+
+}
+
+service ServiceAccountBalance {
+    rpc GetBalance (Query_Account) returns (Response_AccountBalance) {
+    }
+}

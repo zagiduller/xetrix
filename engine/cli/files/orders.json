@@ -1,0 +1,12 @@
+[
+  {
+    "service": "order",
+    "jobs": [
+
+      {
+        "method":"CreateOrder",
+        "payload": "{\"buyerId\": \"Manager-01\", \"intentionId\": \"f7aa936d-85db-483a-a96a-2404f6cfd8b4\",\"sendingAddress\":\"system-usd\",\"receiveAddress\":\"system-btc\",\"amount\":10 }"
+      }
+    ]
+  }
+]

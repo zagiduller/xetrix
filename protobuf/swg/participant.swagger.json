@@ -1,0 +1,147 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "participant.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/_v1/get_info": {
+      "get": {
+        "operationId": "GetInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderParticipant"
+            }
+          }
+        },
+        "tags": [
+          "ServiceParticipant"
+        ]
+      }
+    },
+    "/_v1/get_participant": {
+      "get": {
+        "operationId": "GetParticipant",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Participant"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ServiceParticipant"
+        ]
+      }
+    },
+    "/v1/create_participant": {
+      "post": {
+        "operationId": "CreateParticipant",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Participant"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderParticipant"
+            }
+          }
+        ],
+        "tags": [
+          "ServiceParticipant"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "orderParticipant": {
+      "type": "object",
+      "properties": {
+        "bsonId": {
+          "type": "string",
+          "format": "byte",
+          "title": "@inject_tag: bson:\"_id,omitempty\""
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "title": "Может быть много полей"
+        }
+      }
+    },
+    "orderQueryStatus": {
+      "type": "string",
+      "enum": [
+        "Query_Missed",
+        "Query_Success",
+        "Query_Error"
+      ],
+      "default": "Query_Missed"
+    },
+    "orderResponse_Participant": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "object": {
+          "$ref": "#/definitions/orderParticipant"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderParticipant"
+          }
+        },
+        "itemsCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "queryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        }
+      }
+    }
+  }
+}

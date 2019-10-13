@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package structs;
+
+enum QueryStatus {
+    Query_Missed = 0;
+    Query_Success = 1;
+    Query_Error = 2;
+}
+
+message DealStatus {
+    enum Status {
+        CREATED = 0;
+        PERFORMED = 1;
+        CANCELED = 2;
+    }
+    Status status = 1;
+    string createdAt = 2;
+}
+
+
+message Empty {
+}
+
+message Bool {
+    bool status = 1;
+}
+
+message FrontMetaData {
+    string userName = 1;
+    string userPriceInput = 2;
+}
+
+message KeyValueAttribute {
+    string key = 1;
+    string value = 2;
+    string type = 3;
+}
+

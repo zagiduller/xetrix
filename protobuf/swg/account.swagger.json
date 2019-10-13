@@ -1,0 +1,454 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "account.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/_v1/create_account": {
+      "post": {
+        "operationId": "CreateAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Account"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderQuery_CreateAccount"
+            }
+          }
+        ],
+        "tags": [
+          "ServiceAccount"
+        ]
+      }
+    },
+    "/_v1/get_account/{address}": {
+      "get": {
+        "operationId": "GetAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Account"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "accountId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "participantId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "currencySymbol",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ServiceAccount"
+        ]
+      }
+    },
+    "/_v1/get_account_balance/{address}": {
+      "get": {
+        "operationId": "GetBalance",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_AccountBalance"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "address",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "accountId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "participantId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "currencySymbol",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ServiceAccountBalance"
+        ]
+      }
+    },
+    "/_v1/get_all_account": {
+      "get": {
+        "operationId": "GetAllAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Account"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "address",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "participantId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "currencySymbol",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ServiceAccount"
+        ]
+      }
+    },
+    "/v2/create_participant": {
+      "post": {
+        "summary": "!!! Метод создает пользователя",
+        "operationId": "CreateParticipantAndAccountGenerate",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Participant"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderParticipant"
+            }
+          }
+        ],
+        "tags": [
+          "ServiceAccount"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "AccountBalanceLockedReason": {
+      "type": "object",
+      "properties": {
+        "contractId": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "reason": {
+          "$ref": "#/definitions/LockedReason_LockedReason"
+        }
+      }
+    },
+    "Currency_currencyType": {
+      "type": "string",
+      "enum": [
+        "CRYPTO_CURRENCY",
+        "FIAT_CURRENCY"
+      ],
+      "default": "CRYPTO_CURRENCY"
+    },
+    "LockedReason_LockedReason": {
+      "type": "string",
+      "enum": [
+        "REASON_UNVERIFIED_LOCKED",
+        "REASON_CONTRACT_LOCKED",
+        "REASON_ORDER_LOCKED",
+        "REASON_COMMISSION_LOCKED"
+      ],
+      "default": "REASON_UNVERIFIED_LOCKED"
+    },
+    "orderAccount": {
+      "type": "object",
+      "properties": {
+        "bsonId": {
+          "type": "string",
+          "format": "byte",
+          "title": "@inject_tag: bson:\"_id,omitempty\""
+        },
+        "id": {
+          "type": "string"
+        },
+        "ownerId": {
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/orderCurrency"
+        },
+        "Address": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/orderAccountType"
+        },
+        "status": {
+          "$ref": "#/definitions/orderAccountStatus"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "orderAccountBalance": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "available": {
+          "type": "number",
+          "format": "double"
+        },
+        "locked": {
+          "type": "number",
+          "format": "double"
+        },
+        "unconfirmed": {
+          "type": "number",
+          "format": "double"
+        },
+        "lockedReasons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountBalanceLockedReason"
+          }
+        }
+      }
+    },
+    "orderAccountStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNVERIFED_ACCOUNT",
+        "STATUS_VERIFIED_ACCOUNT"
+      ],
+      "default": "STATUS_UNVERIFED_ACCOUNT"
+    },
+    "orderAccountType": {
+      "type": "string",
+      "enum": [
+        "INACTIVE",
+        "INTERNAL",
+        "EXTERNAL",
+        "SYSTEM"
+      ],
+      "default": "INACTIVE",
+      "title": "enum structs"
+    },
+    "orderCurrency": {
+      "type": "object",
+      "properties": {
+        "bsonId": {
+          "type": "string",
+          "format": "byte",
+          "title": "@inject_tag: bson:\"_id,omitempty\""
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "decimal": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "type": {
+          "$ref": "#/definitions/Currency_currencyType"
+        }
+      }
+    },
+    "orderParticipant": {
+      "type": "object",
+      "properties": {
+        "bsonId": {
+          "type": "string",
+          "format": "byte",
+          "title": "@inject_tag: bson:\"_id,omitempty\""
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string",
+          "title": "Может быть много полей"
+        }
+      }
+    },
+    "orderQueryStatus": {
+      "type": "string",
+      "enum": [
+        "Query_Missed",
+        "Query_Success",
+        "Query_Error"
+      ],
+      "default": "Query_Missed"
+    },
+    "orderQuery_CreateAccount": {
+      "type": "object",
+      "properties": {
+        "ownerId": {
+          "type": "string"
+        },
+        "currencyId": {
+          "type": "string"
+        },
+        "currencyName": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/orderAccountType"
+        },
+        "address": {
+          "type": "string"
+        }
+      }
+    },
+    "orderResponse_Account": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "object": {
+          "$ref": "#/definitions/orderAccount"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderAccount"
+          }
+        },
+        "itemsCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "QueryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        }
+      }
+    },
+    "orderResponse_AccountBalance": {
+      "type": "object",
+      "properties": {
+        "object": {
+          "$ref": "#/definitions/orderAccountBalance"
+        },
+        "QueryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        }
+      }
+    },
+    "orderResponse_Participant": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "object": {
+          "$ref": "#/definitions/orderParticipant"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderParticipant"
+          }
+        },
+        "itemsCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "queryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        }
+      }
+    }
+  }
+}

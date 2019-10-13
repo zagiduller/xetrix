@@ -1,0 +1,299 @@
+syntax = "proto3";
+
+import "common.proto";
+import "user.proto";
+import "transaction.proto";
+import "google/api/annotations.proto";
+
+package structs;
+
+
+message EventNewOrder {
+    Order order = 1;
+}
+
+message EventNewContract {
+    Contract contract = 1;
+}
+
+message EventOrderChange {
+    Order order = 1;
+}
+
+message EventOrderPerformed {
+    Order order = 1;
+}
+
+message EventContractChange {
+    Contract contract = 1;
+}
+
+message EventContractPerformed {
+    Contract contract = 1;
+}
+
+message EventOrderCanceled {
+    Order order = 1;
+}
+
+message EventNewWithdrawal {
+    WithdrawalOrder withdrawalOrder = 1;
+}
+
+message EventWithdrawalPerformed {
+    WithdrawalOrder withdrawalOrder = 1;
+}
+
+message Order {
+    // @inject_tag: bson:"_id,omitempty"
+    bytes bsonId = 100;
+    string id = 1;
+    string ownerId = 2;
+    string sellCurrencySymbol = 3;
+    string buyCurrencySymbol = 4;
+
+    string sendingAddress = 5;
+    string receiveAddress = 6;
+
+    double amount = 7;
+    double price = 8;
+    double available = 9;
+
+    Commission commission = 10;
+
+    repeated Contract contracts = 11;
+
+    DealStatus status = 12;
+
+    string createdAt = 14;
+
+    FrontMetaData frontMetaData = 15;
+}
+
+message Contract {
+    // @inject_tag: bson:"_id,omitempty"
+    bytes bsonId = 100;
+    string id = 1;
+    string orderId = 2;
+    string sellerId = 3;
+    string buyerId = 4;
+
+    string sellerSendAddress = 5;
+    string sellerReceiveAddress = 6;
+    string buyerSendAddress = 7;
+    string buyerReceiveAddress = 8;
+
+    double amount = 9;
+    double cost = 10;
+
+    double available = 11;
+    double price = 12;
+
+    Commission sellerCommission = 13;
+    Commission buyerCommission = 14;
+
+    DealStatus status = 15;
+
+    string createdAt = 16;
+
+    FrontMetaData frontMetaData = 17;
+}
+
+
+message Query_Order {
+    string id = 1;
+    string ownerId = 2;
+
+    string sellCurrencySymbol = 3;
+    string buyCurrencySymbol = 4;
+
+    string sendingAddress = 5;
+    string receiveAddress = 6;
+
+    double amount = 7;
+    double price = 8;
+    double available = 9;
+    double commission = 10;
+
+
+    bool active = 11;
+    DealStatus status = 12;
+    FrontMetaData frontMetaData = 13;
+
+}
+
+message Query_CreateContract {
+    string orderId = 1;
+    string buyerId = 2;
+
+    string sendingAddress = 3;
+    string receiveAddress = 4;
+
+    double amount = 5;
+
+    double buyerCommission = 6;
+    double sellerCommission = 7;
+
+    FrontMetaData frontMetaData = 8;
+}
+
+message Query_Contract {
+    string id = 1;
+    string sellerSendAddress = 2;
+    string sellerReceiveAddress = 3;
+    string buyerSendAddress = 4;
+    string buyerReceiveAddress = 5;
+    string orderId = 6;
+    string buyerId = 7;
+    string sellerId = 8;
+    string sellCurrencySymbol = 10;
+    string buyCurrencySymbol = 11;
+    string userId = 12;
+    bool active = 13;
+    DealStatus status = 14;
+}
+
+
+message Response_Order {
+    bool created = 1;
+    bool canceled = 2;
+    Order object = 3;
+    repeated Order items =4;
+    uint32 itemsCount = 5;
+    QueryStatus QueryStatus = 6;
+}
+
+message Response_Contract {
+    bool created = 1;
+    bool canceled = 2;
+    Contract object = 3;
+    repeated Contract items = 4;
+    uint32 itemsCount = 5;
+    QueryStatus QueryStatus = 6;
+}
+
+message Commission {
+    string Currency = 1;
+    string SendingAddress = 2;
+    string ReceiveAddress = 3;
+    double Amount = 4;
+    double Remainder = 5;
+    message TypeStatus {
+        enum _ET {
+            UNDEFINED = 0;
+            ORDER = 1;
+            CONTRACT_SELLER = 2;
+            CONTRACT_BUYER = 3;
+        }
+        _ET Status = 1;
+        string OrderId = 2;
+        string ContractId = 3;
+    }
+
+    TypeStatus Type = 6;
+}
+
+message Query_CalculateCommission {
+    User user = 1;
+    Order order = 2;
+    Contract contract = 3;
+}
+
+
+
+message WithdrawalOrder {
+    string id = 1;
+    string ownerId = 2;
+    string sendingAddress = 3;
+    string paymentSystem = 4;
+    double amount = 5;
+    repeated KeyValueAttribute attributes = 6;
+    DealStatus status = 7;
+    string relatedTxId = 8;
+    string createdAt = 9;
+}
+
+message Query_Withdrawal  {
+    string id = 1;
+    string ownerId = 2;
+    string sendingAddress = 3;
+    string paymentSystem = 4;
+    double amount = 5;
+    repeated KeyValueAttribute attributes = 6;
+    DealStatus status = 7;
+    string relatedTxId = 8;
+}
+
+message Response_Withdrawal {
+    WithdrawalOrder object = 1;
+    repeated WithdrawalOrder items = 2;
+
+}
+
+service ServiceOrder {
+    rpc CreateOrder (Query_Order) returns (Response_Order) {
+        option (google.api.http) = {
+            post: "/_v1/create_order",
+            body: "*"
+        };
+    }
+    rpc GetOrder (Query_Order) returns (Response_Order) {
+    }
+
+    rpc GetOrders (Query_Order) returns (Response_Order) {
+    }
+
+    rpc CancelOrder (Query_Order) returns (Response_Order) {
+        option (google.api.http) = {
+            get: "/_v1/cancel_order/{id}"
+        };
+    }
+
+    rpc CreateContract (Query_CreateContract) returns (Response_Contract) {}
+
+    rpc GetContract (Query_Contract) returns (Response_Contract) {
+    }
+    rpc GetContracts (Query_Contract) returns (Response_Contract) {
+    }
+
+    rpc IsSellerContractTx (Tx) returns (Contract) {}
+    rpc IsBuyerContractTx (Tx) returns (Contract) {}
+
+
+    rpc CreateWithdrawal (Query_Withdrawal) returns (WithdrawalOrder) {
+        option (google.api.http) = {
+            post: "/_v1/create_withdrawal",
+            body: "*"
+        };
+    }
+
+    rpc GetWithdrawalOrders (Query_Withdrawal) returns (Response_Withdrawal) {}
+
+    rpc PerformWithdrawal (Query_Withdrawal) returns (WithdrawalOrder) {}
+    rpc CancelWithdrawal (Query_Withdrawal) returns (WithdrawalOrder) {
+        option (google.api.http) = {
+            get: "/_v1/cancel_withdrawal/{id}",
+        };
+    }
+}
+
+service ServiceCommission {
+    //
+    rpc Calc (Query_CalculateCommission) returns (Commission) {
+    }
+    rpc Init (Query_CalculateCommission) returns (Commission) {}
+}
+
+
+
+
+
+
+//service ServiceWithdrawal {
+//    rpc CreateWithdrawal (Query_Withdrawal) returns (WithdrawalOrder) {
+//        option (google.api.http) = {
+//            post: "/_v1/withdrawal",
+//            body: "*"
+//        };
+//    }
+//}

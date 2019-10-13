@@ -1,0 +1,218 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "transaction.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/_v1/get_tx/{txId}": {
+      "get": {
+        "operationId": "GetTx",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Tx"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "txId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "contractId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "reason.txId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "reason.contractId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "reason.status",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "UNREASON_TX",
+              "FUND_TX",
+              "WITHDRAW_TX",
+              "SELLER_CONTRACT_TX",
+              "BUYER_CONTRACT_TX",
+              "CONTRACT_COMMISSION_TX"
+            ],
+            "default": "UNREASON_TX"
+          },
+          {
+            "name": "address",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "fromAddress",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "toAddress",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "ServiceTransaction"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "TxReason_TxReasonStatus": {
+      "type": "string",
+      "enum": [
+        "UNREASON_TX",
+        "FUND_TX",
+        "WITHDRAW_TX",
+        "SELLER_CONTRACT_TX",
+        "BUYER_CONTRACT_TX",
+        "CONTRACT_COMMISSION_TX"
+      ],
+      "default": "UNREASON_TX"
+    },
+    "orderQueryStatus": {
+      "type": "string",
+      "enum": [
+        "Query_Missed",
+        "Query_Success",
+        "Query_Error"
+      ],
+      "default": "Query_Missed"
+    },
+    "orderResponse_Tx": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "confirmed": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "object": {
+          "$ref": "#/definitions/orderTx"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderTx"
+          }
+        },
+        "itemsCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "QueryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        }
+      }
+    },
+    "orderTx": {
+      "type": "object",
+      "properties": {
+        "bsonId": {
+          "type": "string",
+          "format": "byte",
+          "title": "@inject_tag: bson:\"_id,omitempty\""
+        },
+        "id": {
+          "type": "string"
+        },
+        "fromAddress": {
+          "type": "string"
+        },
+        "toAddress": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "currencySymbol": {
+          "type": "string"
+        },
+        "reason": {
+          "$ref": "#/definitions/orderTxReason"
+        },
+        "status": {
+          "$ref": "#/definitions/orderTxStatus"
+        },
+        "related": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderTx"
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderTx"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "orderTxReason": {
+      "type": "object",
+      "properties": {
+        "txId": {
+          "type": "string"
+        },
+        "contractId": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/TxReason_TxReasonStatus"
+        }
+      }
+    },
+    "orderTxStatus": {
+      "type": "string",
+      "enum": [
+        "UNCONFIRMED",
+        "COLLATERALIZED",
+        "SAVED",
+        "CONFIRMED",
+        "CANCELED"
+      ],
+      "default": "UNCONFIRMED"
+    }
+  }
+}

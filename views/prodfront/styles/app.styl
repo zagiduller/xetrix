@@ -1,0 +1,1386 @@
+// Base main styles for MyExpay
+@import url('https://unpkg.com/vue-snotify@3.2.1/styles/material.css');
+@require 'mixins.styl'
+webfont('Lato', '/fonts/' ,'Lato-Regular', false, 500, 'regular')
+//@import url('https://unpkg.com/vue-snotify@3.2.1/styles/material.css');
+//@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900&subset=latin-ext');
+//@require 'icons.styl'
+@require '~vuetify/src/stylus/settings/_colors'
+// Base color schemes for project
+
+
+$grey = {
+  "base":       #9e9e9e,
+  "lighten-5":  #fafafa,
+  "lighten-4":  #f5f5f5,
+  "lighten-3":  #eeeeee,
+  "lighten-2":  #d8d8d8,
+  "lighten-1":  #bbbbbb,
+  "darken-1":   #757575,
+  "darken-2":   #616161,
+  "darken-3":   #535353,
+  "darken-4":   #212121
+}
+$blue = {
+  "base":       #463192,
+  "head": #13a7f7,
+
+  "darken-0":  #0e74e0,
+  "lighten-6":  #f8fbfe,
+  "lighten-5":  #cee2f8,
+  "lighten-4":  #a1c7f1,
+  "lighten-3":  #81b4ed,
+  "lighten-2":  #8ebcef,
+  "lighten-1":  #3d8ce4
+  "darken-1":   #463192,
+  "darken-2":   #0d70de,
+  "darken-3":   #1565C0,
+  "darken-4":   #12a1f5,
+  "darken-5":   #0d70de,
+  "accent-1":   #82B1FF,
+  "accent-2":   #448AFF,
+  "accent-3":   #2979FF,
+  "accent-4":   #2962FF
+}
+$colors = {
+  "red": $red,
+  "pink": $pink,
+  "purple": $purple,
+  "deep-purple": $deep-purple,
+  "indigo": $indigo,
+  "blue": $blue,
+  "light-blue": $light-blue,
+  "cyan": $cyan,
+  "teal": $teal,
+  "green": $green,
+  "light-green": $light-green,
+  "lime": $lime,
+  "yellow": $yellow,
+  "amber": $amber,
+  "orange": $orange,
+  "deep-orange": $deep-orange,
+  "brown": $brown,
+  "blue-grey": $blue-grey,
+  "grey": $grey,
+  "shades": $shades
+}
+// Light and dark themes for MyExpay
+
+$material-light = {
+  status-bar: {
+    regular: #E0E0E0,
+    lights-out: rgba(#fff, .7)
+  },
+  app-bar: #FFFFFF,
+  background: #FFFFFF,
+  cards: #FFFFFF,
+  chips: {
+    background: $grey.lighten-2,
+    color: rgba(#000, .87)
+  },
+  dividers: rgba(#000, .12),
+  text: {
+    theme: #fff,
+    primary: $grey.darken-3,
+    secondary: rgba(#000, .54),
+    disabled: rgba(#000, .38),
+    link: $blue.darken-2,
+    link-hover: $grey.darken-3
+  },
+  icons: {
+    active: rgba(#000, .54),
+    inactive: rgba(#000, .38)
+  },
+  inputs: {
+    box: rgba(#000, .04),
+    solo-inverted: rgba(#000, .16),
+    solo-inverted-focused: #424242,
+    solo-inverted-focused-text: #fff
+  },
+  buttons: {
+    disabled: rgba(#000, .26),
+    focused: rgba(#000, .12),
+    focused-alt: rgba(#fff, .6),
+    pressed: rgba(#999, .4)
+  },
+  expansion-panels: {
+    focus: #EEEEEE
+  },
+  list-tile: {
+    hover: rgba(#000, .04)
+  },
+  selection-controls: {
+    thumb: {
+      inactive: $grey.lighten-5,
+      disabled: $grey.lighten-1
+    },
+    track: {
+      inactive: rgba(#000, .38),
+      disabled: rgba(#000, .12)
+    }
+  },
+  slider: {
+    active: rgba(#000, .38),
+    inactive: rgba(#000, .26),
+    disabled: rgba(#000, .26),
+    discrete: #000
+  },
+  tabs: {
+    active: rgba(#000, .87)
+  },
+  text-fields: {
+    box: rgba(#000, .06),
+    box-hover: rgba(#000, .12)
+  },
+  input-bottom-line: rgba(#000, .42),
+  stepper: {
+    active: rgba(#fff, 1),
+    completed: rgba(#000, 0.87),
+    hover: rgba(#000, 0.54)
+  },
+  table: {
+    active: $grey.lighten-4
+    hover: $grey.lighten-3
+  },
+  picker: {
+    body: #fff,
+    clock: $grey.lighten-2,
+    indeterminateTime: $grey.lighten-1,
+    title: $grey.lighten-2
+  },
+  bg-color: #fff
+  fg-color: #fff
+  text-color: #000
+  primary-text-percent: .87
+  secondary-text-percent: .54
+  disabledORhints-text-percent: .38
+  divider-percent: .12
+  active-icon-percent: .54
+  inactive-icon-percent: .38
+
+  // New settings for current theme
+
+  header-color-table-1: $grey.lighten-5
+  header-background-color-table-1: $blue.darken-1
+  header-background-color-table-2: $blue.head
+  header-background-color-table-3: #a3b3cd
+
+  border-block-style-color-1: $blue.lighten-4
+  border-block-style-color-2: $blue.lighten-4
+
+  no-data-text-color: $blue.darken-1
+
+  menu-tab-color: $grey.darken-3
+  menu-tab-color-active: $blue.darken-2
+  dialog-order: {
+    background: #ffffff,
+    header-gradient-top: #12a1f5,
+    header-gradient-bottom: #0d70de,
+    label: $grey.lighten-1,
+    data: $grey.darken-3
+  }
+  wallet-text-color: $grey.lighten-1
+  statistics: {
+    background: #12a1f5,
+    label: #ffffff,
+    data: #ffffff
+  }
+  auth-form: {
+    label: $grey.darken-3
+    header-title: #108deb
+    header-short-text:  #108deb
+  },
+  calendar: {
+    background-color: #fff
+    outside-background-color: #f7f7f7
+    line-color: #e0e0e0
+    interval-color: $grey.darken-3
+    interval-line-color: $grey.lighten-2
+    text-color: #000
+    past-color: rgba(#000, .38)
+  }
+
+  // New settings for current theme
+
+  header-color-table-1: $grey.lighten-5
+  header-background-color-table-1: #275F9E
+  header-background-color-table-2: $blue.head
+  header-background-color-table-3: #a3b3cd
+
+  border-block-style-color-1: $blue.lighten-4
+  border-block-style-color-2: $blue.lighten-4
+
+  no-data-text-color: $blue.darken-1
+
+  menu-tab-color: $grey.darken-3
+  menu-tab-color-active: $blue.darken-2
+  dialog-order: {
+    background: #ffffff,
+    header-gradient-top: #12a1f5,
+    header-gradient-bottom: #0d70de,
+    label: $grey.lighten-1,
+    data: $grey.darken-3
+  }
+  wallet-text-color: $grey.lighten-1
+  statistics: {
+    background: #12a1f5,
+    label: #ffffff,
+    data: #ffffff
+  }
+  auth-form: {
+    label: $grey.darken-3
+    header-title: #108deb
+    header-short-text:  #108deb
+  }
+}
+
+$body-font-family = 'Lato'
+$font-size-root = 12px
+$alert-font-size = 18px
+$card-border-radius = 8px
+
+$input-group-padding = 18px 0 0
+$input-font-size = 12px
+$input-height = 20px
+
+$input-top-spacing = 0px
+$text-field-active-label-height = 12px
+
+// Grid for current project (IMPORTANT: NOT CHANGE!)
+
+$grid-breakpoints = {
+  xs: 0
+  sm: 600px
+  md: 960px
+  lg: (1280px - 16px) // Desktop gets a 16dp reduction
+  xl: (1920px - 16px) // https://material.io/guidelines/layout/responsive-ui.html#responsive-ui-breakpoints
+}
+
+$grid-gutter = 8px
+$grid-columns = 24
+$grid-gutters = {
+  xs: ($grid-gutter / 4)
+  sm: ($grid-gutter / 2)
+  md: $grid-gutter
+  lg: ($grid-gutter * 2)
+  xl: ($grid-gutter * 3)
+}
+
+$container-max-widths = {
+  md: $grid-breakpoints.md
+  lg: $grid-breakpoints.lg
+  xl: $grid-breakpoints.xl
+}
+
+
+// Display
+
+$display-breakpoints = {
+  xs-only: "only screen and (max-width: %s)" % ($grid-breakpoints.sm - 1)
+  sm-only: "only screen and (min-width: %s) and (max-width: %s)" % ($grid-breakpoints.sm ($grid-breakpoints.md  - 1))
+  sm-and-down: "only screen and (max-width: %s)" % ($grid-breakpoints.md - 1)
+  sm-and-up: "only screen and (min-width: %s)" % $grid-breakpoints.sm
+  md-only: "only screen and (min-width: %s) and (max-width: %s)" % ($grid-breakpoints.md ($grid-breakpoints.lg  - 1))
+  md-and-down: "only screen and (max-width: %s )" % ($grid-breakpoints.lg - 1)
+  md-and-up: "only screen and (min-width: %s)" % $grid-breakpoints.md
+  lg-only: "only screen and (min-width: %s) and (max-width: %s)" % ($grid-breakpoints.lg ($grid-breakpoints.xl - 1))
+  lg-and-down: "only screen and (max-width: (%s - 1))" % $grid-breakpoints.xl
+  lg-and-up: "only screen and (min-width: %s)" % $grid-breakpoints.lg
+  xl-only: "only screen and (min-width: %s)" % $grid-breakpoints.xl
+}
+
+$button-border-radius = 7px
+$button-color = $material-light.fg-color
+$button-background-color = gradient(#12a1f5, #0d70de, left top, right  top)
+$button-height = 38px
+$button-font-size = 16px
+
+// Spacing
+
+$spacer = 16px
+$spacer-x = $spacer
+$spacer-y = $spacer
+$spacers = {
+  zero: {
+    x: 0,
+    y: 0
+  },
+  one: {
+    x: ($spacer-x * .25),
+    y: ($spacer-y * .25)
+  },
+  two: {
+    x: ($spacer-x * .5),
+    y: ($spacer-y * .5)
+  },
+  three: {
+    x: $spacer-x,
+    y: $spacer-y
+  },
+  four: {
+    x: ($spacer-x * 1.5),
+    y: ($spacer-y * 1.5)
+  },
+  five: {
+    x: ($spacer-x * 3),
+    y: ($spacer-y * 3)
+  }
+}
+
+$font-weights := {
+  thin: 100,
+  light: 300,
+  regular: 400,
+  medium: 500,
+  bold: 700,
+  black: 900
+}
+.gray-lighten-1 {
+  color: $grey.lighten-1;
+}
+
+$headings = {
+  h1: { size: 64px, weight: 300, line-height: 1, letter-spacing: -.04em },
+  h2: { size: 56px, weight: 400, line-height: 1.35, letter-spacing: -.02em },
+  h3: { size: 45px, weight: 400, line-height: 48px, letter-spacing: normal },
+  h4: { size: 34px, weight: 400, line-height: 40px, letter-spacing: normal },
+  h5: { size: 24px, weight: 400, line-height: 32px, letter-spacing: normal },
+  h6: { size: 20px, weight: 500, line-height: 1, letter-spacing: .02em },
+  subheading: { size: 16px, weight: 400 },
+  body-10: { size: 28px, weight: 500 },
+  body-9: { size: 26px, weight: 500 },
+  body-8: { size: 24px, weight: 500 },
+  body-7: { size: 22px, weight: 500 },
+  body-6: { size: 20px, weight: 500 },
+  body-5-5: { size: 19px, weight: 500 },
+  body-5: { size: 18px, weight: 500 },
+  body-4-5: { size: 17px, weight: 500 },
+  body-4: { size: 16px, weight: 500 },
+  body-3: { size: 14px, weight: 500 },
+  body-2: { size: 13px, weight: 500 },
+  body-1: { size: 12px, weight: 400 },
+  caption: { size: 12px, weight: 400 },
+  button: { size: 14px, weight: 500 }
+}
+@require 'helpers.styl'
+@require '~vuetify/src/stylus/main.styl'
+@require '~vuetify/src/stylus/app.styl'
+@require '~vuetify/src/stylus/theme.styl'
+$blue = {
+  "base":       #463192,
+  "head": #13a7f7,
+
+  "darken-0":  #0e74e0,
+  "lighten-6":  #f8fbfe,
+  "lighten-5":  #cee2f8,
+  "lighten-4":  #a1c7f1,
+  "lighten-3":  #81b4ed,
+  "lighten-2":  #8ebcef,
+  "lighten-1":  #3d8ce4
+  "darken-1":   #463192,
+  "darken-2":   #0d70de,
+  "darken-3":   #1565C0,
+  "darken-4":   #12a1f5,
+  "darken-5":   #0d70de,
+  "accent-1":   #82B1FF,
+  "accent-2":   #448AFF,
+  "accent-3":   #2979FF,
+  "accent-4":   #2962FF
+}
+$colors = {
+  "red": $red,
+  "pink": $pink,
+  "purple": $purple,
+  "deep-purple": $deep-purple,
+  "indigo": $indigo,
+  "blue": $blue,
+  "light-blue": $light-blue,
+  "cyan": $cyan,
+  "teal": $teal,
+  "green": $green,
+  "light-green": $light-green,
+  "lime": $lime,
+  "yellow": $yellow,
+  "amber": $amber,
+  "orange": $orange,
+  "deep-orange": $deep-orange,
+  "brown": $brown,
+  "blue-grey": $blue-grey,
+  "grey": $grey,
+  "shades": $shades
+}
+
+html
+  font-size: $font-size-root
+  overflow-x: hidden
+  text-rendering: optimizeLegibility
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+html, body
+  overflow-x: hidden
+
+.toolbar-gradient
+  gradient(#463192, #0592AB, left top, right  top)
+.main-navigation
+  .button-panel
+    text-align center
+    display block
+    width 100%
+    margin 20px 0px
+    font-weight: 500;
+    font-family Lato
+    position relative
+    &.mobile
+      .icon-nav
+        flex: 0 0 40px;
+        position relative
+
+    .main-menu
+      visibility visible
+    .main-menu-hover
+      visibility hidden
+    .hover
+      position absolute
+      top 0
+      left 0
+      width 100%
+
+    &:hover,&.active
+      .main-menu
+        visibility hidden
+      .main-menu-hover
+        visibility visible
+    svg
+      max-width 40px
+      max-height 50px
+      display block
+      margin 0 auto
+    span
+      display block
+      width 100%
+      color #463192
+.left-panel
+  width 88px
+  border-right solid 1px rgba(83, 83, 83, 0.20)
+  nav
+    .button-panel
+
+      text-align center
+      display block
+      width 100%
+      margin 20px 0px
+      font-weight: 500;
+      font-family Lato
+      position relative
+      .main-menu
+        visibility visible
+      .main-menu-hover
+        visibility hidden
+      .hover
+        position absolute
+        top 0
+        left 0
+        width 100%
+      &:focus {outline:0;}
+      &:hover,&.active
+        .main-menu
+          visibility hidden
+        .main-menu-hover
+          visibility visible
+      svg
+        max-width 40px
+        max-height 50px
+        display block
+        margin 0 auto
+      span
+        display block
+        width 100%
+        color #463192
+block-style-1($material)
+  border-radius 7px
+  border-color: rgba(39, 95, 158, 0.5);
+  border-width 1px
+  border-style solid
+  box-shadow none
+.address_currency {
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 2;
+    width: 100%;
+    height: 70%;
+    border-bottom: dotted 0.13rem #e8e8e8;
+  }
+  > div {
+    background: #ffffff;
+    z-index: 5;
+    position: relative;
+  }
+}
+.address_currency_style_2 {
+  max-width: 100%;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 2;
+    width: 100%;
+    height: 90%;
+    border-bottom: dotted 2px #bbb;
+    gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 100), left top, right  top, 0%, 80%)
+  }
+  > div {
+    background: #ffffff;
+    z-index: 5;
+    position: relative;
+  }
+}
+card-wallet($material)
+  .header
+    border-top-left-radius 8px
+    border-top-right-radius 8px
+    background #275F9E
+    height 78px
+    position relative
+    color: $material.fg-color
+    &:before
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+      content: '';
+      position: absolute;
+      width: calc(100% + 2px);
+      height: 79px;
+      background: #275f9e;
+      z-index: 2;
+      top: 0;
+      left: 0;
+      margin-left: -1px;
+      margin-top: -1px;
+    *
+      z-index 3
+    a
+      color: $material.fg-color
+  .address_currency
+    > div
+      background #275F9E
+
+
+.content-exchange
+  min-height calc(100vh - 270px)
+  padding 0px
+  display: flex;
+
+.top-panel-blocks {
+  height: calc(100vh - 270px);
+  min-height: 250px;
+}
+.margin-minus
+  margin: auto -8px !important;
+v-btn-style($material)
+  &.v-btn__type1
+    gradient(#12a1f5, #0d70de, left top, right  top)
+    text-transform none
+    color: $material.fg-color
+  &.v-btn__type2
+    mix-blend-mode: normal;
+    background-color: #ffffff;
+    border: 1px solid rgba(5, 146, 171, 0.40);
+    box-sizing: border-box;
+    color #000000
+    font-size 12px
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    margin: 0px auto !important;
+    min-width: auto;
+    max-width: calc(100% - 14px);
+    &.v-btn--active:before,
+    &.v-btn:hover:before,
+    &.v-btn:focus:before
+      background-color #ffffff
+    &.active
+      background-color #0592AB
+      color #ffffff
+  &.v-btn-toolbar
+    background: transparent
+    text-transform none
+    font-size 18px
+    color: #fff
+    &.v-btn--active:before,
+    &.v-btn:hover:before,
+    &.v-btn:focus:before {
+
+      background-color: transparent;
+    }
+  &.v-btn-toolbar-right
+    background: transparent
+    text-transform none
+    font-size 16px
+    padding: 0px;
+    color: #fff
+    &.v-btn--active:before,
+    &.v-btn:hover:before,
+    &.v-btn:focus:before {
+      background-color: transparent;
+    }
+
+    @media $display-breakpoints.md-and-up
+      .v-btn__content
+        border solid 2px transparent
+        padding 4px 20px
+      /*&.active
+        .v-btn__content
+          border solid 2px #fff
+          padding 4px 20px*/
+
+  &.v-btn__type3
+    background #0592ab
+    text-transform none
+    color #ffffff
+    border-radius 8px
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+    &.v-btn--outline {
+      border: 1px solid #0592ab;
+      background: transparent !important;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: #0592ab !important;
+    }
+    &.v-btn--small {
+      font-size: 15px;
+      height: 32px;
+      padding: 0 8px;
+    }
+    &.v-btn--active:before,
+    &.v-btn:hover:before,
+    &.v-btn:focus:before {
+      background-color: transparent;
+    }
+  &.v-btn__type4
+    background: transparent;
+    text-transform: none;
+    border: none;
+    border-bottom: none
+    color: #535353;
+    font-size: 14px;
+    border-radius: 6px;
+    min-width: auto;
+    padding: 0px;
+    height: 20px;
+    border-color #0592AB
+    &.v-btn--active
+      border-bottom: none;
+    &.v-btn--active:before,
+    &.v-btn:hover:before,
+    &.v-btn:focus:before
+      background-color transparent
+    &.menuable__content__active
+      background-color #0592AB
+    &.active
+      background-color rgba(4, 145, 170, 0.20)
+  &.btn-action-table
+    width 20px
+    height 20px
+    text-transform none
+    color: $material.fg-color
+    &.v-btn--outline {
+      border: 1px solid red;
+      background: transparent !important;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+      color: red !important;
+    }
+    &.v-btn--small {
+      font-size: 10px;
+      height: 18px;
+      padding: 0 8px;
+    }
+    &.v-btn--active:before,
+    &.v-btn:hover:before,
+    &.v-btn:focus:before {
+      background-color: transparent;
+    }
+
+  &.v-btn--disabled
+    color: $material.fg-color !important;
+    opacity: 0.5;
+  &.v-btn__type_select_wallet
+    color: $material.text.link !important;
+    box-shadow: none;
+    padding: 0px;
+    margin: 0px;
+    background: none;
+    min-width: auto;
+    width 100%
+    border-radius: 0px;
+    font-weight: bold;
+    &:not(.v-btn--icon),
+    &:not(.v-btn--flat)
+      background: none;
+
+.container.fluid {
+  max-width: 100%;
+  flex: 1;
+  width: 100%;
+}
+.container
+  &.grid-list
+    for $size, $gutter in $grid-gutters
+      &-{$size}
+        .layout:not(:only-child)
+          margin: 0px;
+.data
+  table.v-table
+    border-collapse: separate;
+    height: 100%;
+    thead, tbody
+      td, th
+        &:not(:nth-child(1)), &:first-child
+          padding: 0 5px
+    thead
+      height 34px
+      tr
+        height 34px
+        &.v-datatable__progress
+          display none
+      th
+        font-weight: 400
+        font-size: 16px
+        transition: .3s $transition.swing
+        white-space: nowrap
+        user-select: none
+        .v-icon
+          margin-left: -16px;
+        .v-input__control
+          .v-icon
+            margin-left: 0px;
+        &.sortable
+          pointer-events: auto
+
+        > div
+          width: 100%
+    tbody
+      tr
+        transition: background $primary-transition
+        will-change: background
+      td, th
+        height: 26px
+        white-space: nowrap;
+      td
+        font-weight: 400
+        font-size: 14px
+    .input-group--selection-controls
+      padding: 0
+      .input-group__details
+        display: none
+      &.checkbox
+        .v-icon
+          left: 50%
+          transform: translateX(-50%)
+        .input-group--selection-controls__ripple
+          left: 50%
+          transform: translate(-50%, -50%)
+    tfoot
+      tr
+        height: 26px
+        td
+          padding: 0 6px
+  &.group-table
+    min-height: 500px;
+    background: #ffffff;
+    position: relative;
+    @media $display-breakpoints.sm-and-down
+      min-height auto
+      padding-bottom 28px
+    table.v-table
+      border-collapse: separate;
+      tbody
+        td
+          border-width 1px 0px 0px 0px
+          border-style solid
+          border-color #f8fbfe
+          font-weight 600
+          position: relative
+          .select-group-arrow
+            position absolute
+            right 20%;
+            top 50%;
+            margin-top -10px
+            .v-icon
+              font-size 20px
+              &.mdi-chevron-left
+                color: $blue.darken-0;
+        tr
+          background #ffffff
+          td
+            border-style solid
+            border-color #ffffff
+          &:hover,
+          &.active
+            background: $blue.lighten-6;
+            td
+              border-top-color #cee2f8
+            + tr
+              td
+                border-top-color #cee2f8
+          &:hover:last-child,
+          &.active:last-child
+            td
+              border-bottom-color #cee2f8
+              border-width 1px 0px 1px 0px
+
+  &.buy-table
+    min-height 500px
+    background #ffffff
+    position relative
+    @media $display-breakpoints.sm-and-down
+      min-height auto
+      padding-bottom 28px
+  &.sell-table
+    min-height 500px
+    background #ffffff
+    position relative
+    @media $display-breakpoints.sm-and-down
+      min-height auto
+      padding-bottom 28px
+  &.buy-table,
+  &.sell-table
+    table.v-table
+      border-collapse: separate;
+      tbody
+        tr
+          background #f8fbfe
+          td
+            border-width 1px 0px 0px 0px
+            border-style solid
+            border-color #f8fbfe
+            font-weight 600
+          @media $display-breakpoints.md-and-up
+            &:hover
+              background #cee2f8
+              td
+                border-top-color #81b4ed
+              + tr
+                td
+                  border-top-color #81b4ed
+            &:hover:last-child,
+            &.active:last-child
+              td
+                border-bottom-color #81b4ed
+                border-width 1px 0px 1px 0px
+          /*&.active-expanded
+            background: #cee2f8;
+            border-bottom-color #cee2f8
+            td
+              border-bottom-color #cee2f8
+              border-top-color #81b4ed
+            + tr.v-datatable__expand-row
+                background: #cee2f8;
+                td
+                  border-bottom-color #81b4ed*/
+          @media $display-breakpoints.sm-and-down
+            &:hover
+              background #cee2f8
+              td
+                border-top-color #81b4ed
+              + tr
+                td
+                  border-top-color #81b4ed
+            &:hover:last-child,
+            &.active:last-child
+              td
+                border-bottom-color #81b4ed
+                border-width 1px 0px 1px 0px
+            /* &.v-datatable__expand-row
+              td
+                border-top-color: red;
+                border-bottom-color: red;
+                border-bottom-width 1px*/
+            &.active-expanded
+              background: #cee2f8;
+              td
+                border-top-color #81b4ed
+              + tr.v-datatable__expand-row
+                background: #cee2f8;
+                td
+                  border-top-color #cee2f8
+                  border-bottom-color #81b4ed
+                  border-width 1px 0px 1px 0px
+              &:hover,
+              &.active
+                background: #cee2f8;
+                td
+                  border-top-color #81b4ed
+
+  /* History table (tab All Orders) */
+
+  &.history-table
+    height: calc(100vh - 348px);
+    min-height: 502px;
+    background: #fff;
+    position: relative;
+    @media $display-breakpoints.sm-and-down
+      min-height: auto;
+      height: auto;
+      padding-bottom 28px
+    .v-table
+      thead
+        &:before
+          background: $material-light.header-background-color-table-2 !important
+
+  /* Information in view table from outside world exchanges (all tabs) */
+
+  &.info-exchange-table
+    height: 76px;
+    min-height: 76px;
+    background: #fff;
+    position: relative;
+    @media $display-breakpoints.sm-and-down
+      min-height: auto;
+      height: auto;
+    .v-table
+      thead
+        height: 20px !important;
+        &:before
+          background: $material-light.header-background-color-table-3 !important
+          height: 20px !important;
+        tr
+          height 20px
+          th
+            font-size: 11px !important;
+    .v-table__overflow
+      border-radius 8px
+table-style($material)
+  .pagination--table
+    position absolute
+    right 5px
+    bottom 5px
+    @media $display-breakpoints.md-and-down
+      right 0px
+      bottom 0px
+      width: 100%;
+    span {
+      font-size 16px;
+    }
+    .pag {
+      width: 100px;
+      display: inline-block;
+    }
+  .v-datatable__actions
+    display none
+  &.style-1
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    thead
+      border-top-left-radius 7px
+      border-top-right-radius 7px
+      background transparent
+      tr:first-child
+        position relative
+        th,
+        th.column.sortable
+          color: $material.header-color-table-1
+          font-weight normal
+          opacity 1
+          z-index 3
+          position relative
+          i
+            opacity: 1;
+            color: $material.header-color-table-1
+            &:before
+              color: $material.header-color-table-1
+          &:hover
+            color: $material.header-color-table-1
+            opacity: 1;
+          &.active
+            color: $material.header-color-table-1
+            i
+              color: $material.header-color-table-1
+      &:before {
+        border-top-left-radius 7px
+        border-top-right-radius 7px
+        content ''
+        position absolute
+        width: calc(100% + 2px)
+        height: 34px;
+        background: $material.header-background-color-table-1
+        z-index 2
+        margin-left -1px
+        margin-top -1px
+        padding-right 3px
+      }
+      .v-datatable__progress
+        display none
+  .v-table__overflow
+    border-top-left-radius 8px
+    border-top-right-radius 8px
+table-input($material)
+  .v-text-field__details
+    display none
+  .v-input__slot,
+  .v-input__slot:hover {
+    min-height 38px
+    margin 0px
+    border 1px solid #BBBBBB
+    border-radius 7px
+  }
+  &.v-text-field--outline:not(.v-input--is-focused):not(.v-input--has-state) > .v-input__control > .v-input__slot:hover {
+    border 1px solid #BBBBBB
+  }
+  &.v-text-field--outline:not(.v-input--is-focused) {
+    .v-input__slot {
+      border 1px solid #BBBBBB
+    }
+  }
+  &.v-text-field--outline
+    & > .v-input__control > .v-input__slot
+      border 1px solid #BBBBBB
+
+    &:not(.v-input--is-focused):not(.v-input--has-state) > .v-input__control > .v-input__slot:hover
+      border 1px solid #BBBBBB
+    .v-text-field__prefix
+      max-height: none
+
+  input
+    max-height: none
+  &.v-text-field--outline.v-text-field--single-line
+    input
+      margin-top: 0px !important
+  .v-text-field input {
+    line-height: 10px;
+    padding: 0px;
+    min-height 38px
+    max-height auto
+  }
+  .v-label
+    top: 6px;
+input-style($material)
+  padding-top 30px
+  padding-bottom 0px
+  margin-top -12px
+  .v-text-field__details
+    display flex
+    padding: 4px 0px;
+  .v-input__slot,
+  .v-input__slot:hover {
+    min-height 36px
+    margin 0px
+    border 1px solid #ebebec
+    border-radius 7px
+  }
+  .v-input__slot:before,
+  .v-input__slot:after
+    display none !important
+  &.v-text-field--outline:not(.v-input--is-focused) {
+    .v-input__slot {
+      border 1px solid #ebebec
+    }
+  }
+  .v-text-field--single-line
+    input
+      margin-top: 0px
+  &.v-text-field
+    input
+      line-height 10px
+      padding 0px 20px 0px 20px
+      font-size: 14px
+    .v-input__append-inner
+      margin-left auto
+      padding-left 4px
+      padding-right 20px
+  .v-label
+    top -14px
+    font-weight 700
+    font-size 14px
+    transform translateY(-18px)
+    color: #535353
+
+  &.v-textarea
+    .v-input__slot,
+    .v-input__slot:hover
+      min-height 36px
+      margin 0px
+      border 1px solid #61b4f0
+      border-radius 7px
+      box-shadow none
+exchange($material)
+  background: #ffffff;
+  color: #535353;
+  a.link
+    color: #3d8be3;
+    .v-icon
+      color: #3d8be3;
+  a.link.nav
+    margin-left -30px;
+    @media $display-breakpoints.md-and-down
+      margin-left 0px;
+.menu-pairs-block
+  background: #FFFFFF;
+  border: 1px solid #0592AB;
+  box-sizing: border-box;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  margin-top: 4px;
+.mobile-navigation
+  background #ffffff
+  width 100%
+  min-height 70vh
+.main-navigation {
+  width: 100%;
+  left: 0px !important;
+  max-width: 100%;
+  top: 70px !important;
+}
+.burger
+  .v-icon
+    color #fff !important
+    font-size 36px
+tabs-menu($material)
+  height: 22px;
+  .v-tabs__bar {
+    background-color: transparent;
+  }
+  .v-tabs__div
+    align-items: center
+    display: inline-flex
+    flex: 0 1 auto
+    font-size: 18px
+
+    font-weight: 600
+    line-height: normal
+    height: inherit
+    max-width: 264px
+    text-align: center
+    text-transform: none
+    vertical-align: middle
+    @media $display-breakpoints.md-and-down
+      height: calc(100% - 2px);
+      border-bottom: solid 1px #bbbbbb;
+      font-size: 14px
+  .v-tabs__item
+    align-items: center
+    color: $material.menu-tab-color
+    display: flex
+    flex: 1 1 auto
+    height: 22px;
+    justify-content: center
+    max-width: inherit
+    padding: 0px 0px
+    text-decoration: none
+    transition: $primary-transition
+    user-select: none
+    white-space: normal
+    &--active
+      color: $material.menu-tab-color-active
+  .v-tabs__slider-wrapper
+    @media $display-breakpoints.md-and-up
+      display: none
+  .v-tabs__slider
+    height 3px
+    width 100%
+  .v-tabs__container
+    flex: 1 0 auto
+    display: flex
+    height: 22px
+    list-style-type: none
+    transition: none;
+    white-space: nowrap
+    position: relative
+    &--overflow
+      .v-tabs__div
+        flex: 1 0 auto
+    &--grow
+      .v-tabs__div
+        flex: 1 0 auto
+        max-width: none
+    &--icons-and-text
+      height: 72px
+    &--align-with-title
+      padding-left: 0px
+    &--fixed-tabs,
+    &--icons-and-text
+      .v-tabs__div
+        min-width: 72px
+        @media $display-breakpoints.sm-and-up
+          min-width: 160px
+    &--fixed-tabs
+      .v-tabs__div
+        @media $display-breakpoints.xs-only
+          flex: 1 0 auto
+
+
+    &--centered,
+    &--fixed-tabs,
+    &--right
+      > .v-tabs__div:first-child
+        margin-left: auto
+
+      .v-tabs__slider-wrapper + .v-tabs__div
+        margin-left: auto
+
+    &--centered,
+    &--fixed-tabs
+      > .v-tabs__div:last-child
+        margin-right: auto
+
+    &--icons-and-text
+      .v-tabs__item
+        flex-direction: column-reverse
+
+      .v-icon
+        margin-bottom: 6px
+toolbar-main($material)
+  .v-btn
+    text-transform: none;
+    color: #ffffff
+    position relative
+    height 70px
+    border: none;
+    padding: 0px 20px;
+    .v-btn__content
+      height: 70px;
+auth-form($material)
+  background #ffffff
+  .header-title
+    //color: $material.auth-form.header-title;
+    font-size 40px
+  .header-short-text
+    font-size 18px
+    //color: $material.auth-form.header-short-text;
+    .big-char
+      font-size 30px
+.links
+  color: #463192;
+  border-radius: 18px;
+  border: 2px solid #463192;
+  height: 35px;
+  width: 35px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 36px;
+  display: inline-block;
+  .v-icon
+    color: #463192;
+hr
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, .1);
+
+faq-panel($material)
+  .v-expansion-panel__container
+    border-top: 1px solid rgba(39, 95, 158, 0.55);
+    background-color: $material.cards
+    color: $material.text.primary
+
+    .v-expansion-panel__header
+      .v-expansion-panel__header__icon
+        .v-icon
+          color: $material.icons.active
+
+    &--disabled
+      color: $material.text.disabled
+
+  &--focusable
+    .v-expansion-panel__container
+    &:focus
+      background-color: $material.expansion-panels.focus
+
+theme(faq-panel, "faq-panel")
+
+.faq-panel
+  border 1px solid #275F9E
+  border-radius: 8px;
+  box-shadow none
+  .v-expansion-panel__container
+    flex: 1 0 100%
+    max-width: 100%
+    outline: none
+    transition: .3s $transition.swing
+
+    &:first-child
+      border-top: none !important
+      border-top-right-radius 8px
+      border-top-left-radius 8px
+    &:last-child
+      border-bottom-right-radius 8px
+      border-bottom-left-radius 8px
+    .v-expansion-panel__header__iconnel__header__icon
+      margin-left: auto
+  .v-expansion-panel__body
+    > .v-card
+      border-bottom-right-radius 8px
+      border-bottom-left-radius 8px
+alert($material)
+  @media $display-breakpoints.md-and-down
+    min-height: 100px;
+  .text-color
+    color: $material.no-data-text-color
+  &.alert-table
+    height: calc(100% - 26px);
+.dialog-opacity-transition-enter,
+.dialog-opacity-transition-leave-to {
+  opacity: 0;
+}
+.dialog-opacity-transition-enter-to,
+.dialog-opacity-transition-leave {
+  opacity: 1;
+}
+.v-overlay
+  transition: .3s $transition.swing
+  &:before
+    background-color: rgba(0, 0, 0, 1)
+  &--active
+    &:before
+      opacity: .15
+dialog--order($material)
+  background #ffffff
+  box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, .1)
+  -webkit-box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, .1)
+  position relative
+  .dialog
+    &--header
+      height: 60px
+      background #275F9E
+      font-size 14px
+      h3, h2, i
+        color: #ffffff
+    &--heading
+      color: #535353
+    &--close-button
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 17px;
+      i
+        color: #ffffff
+progress-line($material)
+  .v-progress-linear
+    margin 0
+    padding 0
+    width 140px
+    height 5px !important
+    border-radius 3px
+theme(progress-line, 'progress-line')
+theme(dialog--order, 'dialog--order')
+theme(alert, 'alert')
+theme(toolbar-main, 'toolbar-main')
+theme(table-input, 'table-input')
+
+theme(auth-form, 'auth-form')
+theme(input-style, 'input-style')
+// Styles wallet with data
+theme(card-wallet, 'card-wallet')
+// Styles bloks with data
+theme(block-style-1, 'block-style-1')
+// Styles buttons
+theme(v-btn-style, 'v-btn-style')
+theme(exchange, 'exchange')
+theme(table-style, 'table-style')

@@ -1,0 +1,1760 @@
+{
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "swagger": "2.0",
+  "info": {
+    "title": "account.proto",
+    "version": "version not set"
+  },
+  "paths": {
+    "/_v1/calc_commission": {
+      "post": {
+        "tags": [
+          "ServiceCommission"
+        ],
+        "operationId": "Calc",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderQuery_CalculateCommission"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderCommission"
+            }
+          }
+        }
+      }
+    },
+    "/_v1/cancel_order/{id}": {
+      "get": {
+        "tags": [
+          "ServiceOrder"
+        ],
+        "operationId": "CancelOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "ownerId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sellCurrencySymbol",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "buyCurrencySymbol",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sendingAddress",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "receiveAddress",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "double",
+            "name": "amount",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "double",
+            "name": "price",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "double",
+            "name": "available",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "double",
+            "name": "commission",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "format": "boolean",
+            "name": "active",
+            "in": "query"
+          },
+          {
+            "enum": [
+              "CREATED",
+              "PERFORMED",
+              "CANCELED"
+            ],
+            "type": "string",
+            "default": "CREATED",
+            "name": "status.status",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "status.createdAt",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "frontMetaData.userName",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "frontMetaData.userPriceInput",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Order"
+            }
+          }
+        }
+      }
+    },
+    "/_v1/close_session": {
+      "get": {
+        "tags": [
+          "ServiceAuth"
+        ],
+        "operationId": "CloseSession",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderBool"
+            }
+          }
+        }
+      }
+    },
+    "/_v1/create_account": {
+      "post": {
+        "tags": [
+          "ServiceAccount"
+        ],
+        "operationId": "CreateAccount",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderQuery_CreateAccount"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Account"
+            }
+          }
+        }
+      }
+    },
+    "/_v1/create_contract": {
+      "post": {
+        "tags": [
+          "ServiceTransactionProcessing"
+        ],
+        "operationId": "CreateInternalContract",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderQuery_CreateContract"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Contract"
+            }
+          }
+        }
+      }
+    },
+    "/_v1/create_order": {
+      "post": {
+        "tags": [
+          "ServiceOrder"
+        ],
+        "operationId": "CreateOrder",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderQuery_Order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Order"
+            }
+          }
+        }
+      }
+    },
+    "/_v1/get_account/{address}": {
+      "get": {
+        "tags": [
+          "ServiceAccount"
+        ],
+        "operationId": "GetAccount",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "address",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "accountId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "participantId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "currencySymbol",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Account"
+            }
+          }
+        }
+      }
+    },
+    "/_v1/get_account_balance/{address}": {
+      "get": {
+        "tags": [
+          "ServiceAccountBalance"
+        ],
+        "operationId": "GetBalance",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "address",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "accountId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "participantId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "currencySymbol",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_AccountBalance"
+            }
+          }
+        }
+      }
+    },
+    "/_v1/get_all_account": {
+      "get": {
+        "tags": [
+          "ServiceAccount"
+        ],
+        "operationId": "GetAllAccount",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "accountId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "address",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "participantId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "currencySymbol",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Account"
+            }
+          }
+        }
+      }
+    },
+    "/_v1/get_contract/{id}": {
+      "get": {
+        "tags": [
+          "ServiceOrder"
+        ],
+        "operationId": "GetContract",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "sellerSendAddress",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sellerReceiveAddress",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "buyerSendAddress",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "buyerReceiveAddress",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "orderId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "buyerId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sellerId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sellCurrencySymbol",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "buyCurrencySymbol",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "participantId",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "format": "boolean",
+            "name": "active",
+            "in": "query"
+          },
+          {
+            "enum": [
+              "CREATED",
+              "PERFORMED",
+              "CANCELED"
+            ],
+            "type": "string",
+            "default": "CREATED",
+            "name": "status.status",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "status.createdAt",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Contract"
+            }
+          }
+        }
+      }
+    },
+    "/_v1/get_contracts": {
+      "get": {
+        "tags": [
+          "ServiceOrder"
+        ],
+        "operationId": "GetContracts",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sellerSendAddress",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sellerReceiveAddress",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "buyerSendAddress",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "buyerReceiveAddress",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "orderId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "buyerId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sellerId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sellCurrencySymbol",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "buyCurrencySymbol",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "participantId",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "format": "boolean",
+            "name": "active",
+            "in": "query"
+          },
+          {
+            "enum": [
+              "CREATED",
+              "PERFORMED",
+              "CANCELED"
+            ],
+            "type": "string",
+            "default": "CREATED",
+            "name": "status.status",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "status.createdAt",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Contract"
+            }
+          }
+        }
+      }
+    },
+    "/_v1/get_info": {
+      "get": {
+        "tags": [
+          "ServiceParticipant"
+        ],
+        "operationId": "GetInfo",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderParticipant"
+            }
+          }
+        }
+      }
+    },
+    "/_v1/get_participant": {
+      "get": {
+        "tags": [
+          "ServiceParticipant"
+        ],
+        "operationId": "GetParticipant",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Participant"
+            }
+          }
+        }
+      }
+    },
+    "/_v1/get_tx/{txId}": {
+      "get": {
+        "tags": [
+          "ServiceTransaction"
+        ],
+        "operationId": "GetTx",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "txId",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "contractId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "reason.txId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "reason.contractId",
+            "in": "query"
+          },
+          {
+            "enum": [
+              "UNREASON_TX",
+              "FUND_TX",
+              "WITHDRAW_TX",
+              "SELLER_CONTRACT_TX",
+              "BUYER_CONTRACT_TX",
+              "CONTRACT_COMMISSION_TX"
+            ],
+            "type": "string",
+            "default": "UNREASON_TX",
+            "name": "reason.status",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "address",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "fromAddress",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "toAddress",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Tx"
+            }
+          }
+        }
+      }
+    },
+    "/v1/create_participant": {
+      "post": {
+        "tags": [
+          "ServiceParticipant"
+        ],
+        "operationId": "CreateParticipant",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderParticipant"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Participant"
+            }
+          }
+        }
+      }
+    },
+    "/v1/get_currency": {
+      "get": {
+        "tags": [
+          "ServiceCurrency"
+        ],
+        "operationId": "GetCurrency",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "name",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "symbol",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_CurrencyQuery"
+            }
+          }
+        }
+      }
+    },
+    "/v1/get_order/{id}": {
+      "get": {
+        "tags": [
+          "ServiceOrder"
+        ],
+        "operationId": "GetOrder",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "name": "ownerId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sellCurrencySymbol",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "buyCurrencySymbol",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sendingAddress",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "receiveAddress",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "double",
+            "name": "amount",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "double",
+            "name": "price",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "double",
+            "name": "available",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "double",
+            "name": "commission",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "format": "boolean",
+            "name": "active",
+            "in": "query"
+          },
+          {
+            "enum": [
+              "CREATED",
+              "PERFORMED",
+              "CANCELED"
+            ],
+            "type": "string",
+            "default": "CREATED",
+            "name": "status.status",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "status.createdAt",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "frontMetaData.userName",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "frontMetaData.userPriceInput",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Order"
+            }
+          }
+        }
+      }
+    },
+    "/v1/get_orders": {
+      "get": {
+        "tags": [
+          "ServiceOrder"
+        ],
+        "operationId": "GetOrders",
+        "parameters": [
+          {
+            "type": "string",
+            "name": "id",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "ownerId",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sellCurrencySymbol",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "buyCurrencySymbol",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "sendingAddress",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "receiveAddress",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "double",
+            "name": "amount",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "double",
+            "name": "price",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "double",
+            "name": "available",
+            "in": "query"
+          },
+          {
+            "type": "number",
+            "format": "double",
+            "name": "commission",
+            "in": "query"
+          },
+          {
+            "type": "boolean",
+            "format": "boolean",
+            "name": "active",
+            "in": "query"
+          },
+          {
+            "enum": [
+              "CREATED",
+              "PERFORMED",
+              "CANCELED"
+            ],
+            "type": "string",
+            "default": "CREATED",
+            "name": "status.status",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "status.createdAt",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "frontMetaData.userName",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "name": "frontMetaData.userPriceInput",
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Order"
+            }
+          }
+        }
+      }
+    },
+    "/v1/start_session": {
+      "post": {
+        "tags": [
+          "ServiceAuth"
+        ],
+        "operationId": "StartSession",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderAuthenticate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderSession"
+            }
+          }
+        }
+      }
+    },
+    "/v2/create_participant": {
+      "post": {
+        "tags": [
+          "ServiceAccount"
+        ],
+        "summary": "!!! Метод создает пользователя",
+        "operationId": "CreateParticipantAndAccountGenerate",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderParticipant"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Participant"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "AccountBalanceLockedReason": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "contractId": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "reason": {
+          "$ref": "#/definitions/LockedReason_LockedReason"
+        }
+      }
+    },
+    "CommissionTypeStatus": {
+      "type": "object",
+      "properties": {
+        "ContractId": {
+          "type": "string"
+        },
+        "OrderId": {
+          "type": "string"
+        },
+        "Status": {
+          "$ref": "#/definitions/TypeStatus_ET"
+        }
+      }
+    },
+    "Currency_currencyType": {
+      "type": "string",
+      "default": "CRYPTO_CURRENCY",
+      "enum": [
+        "CRYPTO_CURRENCY",
+        "FIAT_CURRENCY"
+      ]
+    },
+    "DealStatusStatus": {
+      "type": "string",
+      "default": "CREATED",
+      "enum": [
+        "CREATED",
+        "PERFORMED",
+        "CANCELED"
+      ]
+    },
+    "LockedReason_LockedReason": {
+      "type": "string",
+      "default": "REASON_UNVERIFIED_LOCKED",
+      "enum": [
+        "REASON_UNVERIFIED_LOCKED",
+        "REASON_CONTRACT_LOCKED",
+        "REASON_ORDER_LOCKED",
+        "REASON_COMMISSION_LOCKED"
+      ]
+    },
+    "TxReason_TxReasonStatus": {
+      "type": "string",
+      "default": "UNREASON_TX",
+      "enum": [
+        "UNREASON_TX",
+        "FUND_TX",
+        "WITHDRAW_TX",
+        "SELLER_CONTRACT_TX",
+        "BUYER_CONTRACT_TX",
+        "CONTRACT_COMMISSION_TX"
+      ]
+    },
+    "TypeStatus_ET": {
+      "type": "string",
+      "default": "UNDEFINED",
+      "enum": [
+        "UNDEFINED",
+        "ORDER",
+        "CONTRACT_SELLER",
+        "CONTRACT_BUYER"
+      ]
+    },
+    "orderAccount": {
+      "type": "object",
+      "properties": {
+        "Address": {
+          "type": "string"
+        },
+        "bsonId": {
+          "type": "string",
+          "format": "byte",
+          "title": "@inject_tag: bson:\"_id,omitempty\""
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/orderCurrency"
+        },
+        "id": {
+          "type": "string"
+        },
+        "ownerId": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/orderAccountStatus"
+        },
+        "type": {
+          "$ref": "#/definitions/orderAccountType"
+        }
+      }
+    },
+    "orderAccountBalance": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "available": {
+          "type": "number",
+          "format": "double"
+        },
+        "locked": {
+          "type": "number",
+          "format": "double"
+        },
+        "lockedReasons": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AccountBalanceLockedReason"
+          }
+        },
+        "unconfirmed": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "orderAccountStatus": {
+      "type": "string",
+      "default": "STATUS_UNVERIFED_ACCOUNT",
+      "enum": [
+        "STATUS_UNVERIFED_ACCOUNT",
+        "STATUS_VERIFIED_ACCOUNT"
+      ]
+    },
+    "orderAccountType": {
+      "type": "string",
+      "title": "enum structs",
+      "default": "INACTIVE",
+      "enum": [
+        "INACTIVE",
+        "INTERNAL",
+        "EXTERNAL",
+        "SYSTEM"
+      ]
+    },
+    "orderAuthenticate": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "orderBool": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean",
+          "format": "boolean"
+        }
+      }
+    },
+    "orderCommission": {
+      "type": "object",
+      "properties": {
+        "Amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "Currency": {
+          "type": "string"
+        },
+        "ReceiveAddress": {
+          "type": "string"
+        },
+        "Remainder": {
+          "type": "number",
+          "format": "double"
+        },
+        "SendingAddress": {
+          "type": "string"
+        },
+        "Type": {
+          "$ref": "#/definitions/CommissionTypeStatus"
+        }
+      }
+    },
+    "orderContract": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "available": {
+          "type": "number",
+          "format": "double"
+        },
+        "bsonId": {
+          "type": "string",
+          "format": "byte",
+          "title": "@inject_tag: bson:\"_id,omitempty\""
+        },
+        "buyerCommission": {
+          "$ref": "#/definitions/orderCommission"
+        },
+        "buyerId": {
+          "type": "string"
+        },
+        "buyerReceiveAddress": {
+          "type": "string"
+        },
+        "buyerSendAddress": {
+          "type": "string"
+        },
+        "cost": {
+          "type": "number",
+          "format": "double"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "frontMetaData": {
+          "$ref": "#/definitions/orderFrontMetaData"
+        },
+        "id": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "sellerCommission": {
+          "$ref": "#/definitions/orderCommission"
+        },
+        "sellerId": {
+          "type": "string"
+        },
+        "sellerReceiveAddress": {
+          "type": "string"
+        },
+        "sellerSendAddress": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/orderDealStatus"
+        }
+      }
+    },
+    "orderCurrency": {
+      "type": "object",
+      "properties": {
+        "bsonId": {
+          "type": "string",
+          "format": "byte",
+          "title": "@inject_tag: bson:\"_id,omitempty\""
+        },
+        "decimal": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "symbol": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/Currency_currencyType"
+        }
+      }
+    },
+    "orderDealStatus": {
+      "type": "object",
+      "properties": {
+        "createdAt": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/DealStatusStatus"
+        }
+      }
+    },
+    "orderFrontMetaData": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "userPriceInput": {
+          "type": "string"
+        }
+      }
+    },
+    "orderOrder": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "available": {
+          "type": "number",
+          "format": "double"
+        },
+        "bsonId": {
+          "type": "string",
+          "format": "byte",
+          "title": "@inject_tag: bson:\"_id,omitempty\""
+        },
+        "buyCurrencySymbol": {
+          "type": "string"
+        },
+        "commission": {
+          "$ref": "#/definitions/orderCommission"
+        },
+        "contracts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderContract"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "frontMetaData": {
+          "$ref": "#/definitions/orderFrontMetaData"
+        },
+        "id": {
+          "type": "string"
+        },
+        "ownerId": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "receiveAddress": {
+          "type": "string"
+        },
+        "sellCurrencySymbol": {
+          "type": "string"
+        },
+        "sendingAddress": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/orderDealStatus"
+        }
+      }
+    },
+    "orderParticipant": {
+      "type": "object",
+      "properties": {
+        "bsonId": {
+          "type": "string",
+          "format": "byte",
+          "title": "@inject_tag: bson:\"_id,omitempty\""
+        },
+        "createdAt": {
+          "type": "string",
+          "title": "Может быть много полей"
+        },
+        "email": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "orderQueryStatus": {
+      "type": "string",
+      "default": "Query_Missed",
+      "enum": [
+        "Query_Missed",
+        "Query_Success",
+        "Query_Error"
+      ]
+    },
+    "orderQuery_CalculateCommission": {
+      "type": "object",
+      "properties": {
+        "contract": {
+          "$ref": "#/definitions/orderContract"
+        },
+        "order": {
+          "$ref": "#/definitions/orderOrder"
+        },
+        "participant": {
+          "$ref": "#/definitions/orderParticipant"
+        }
+      }
+    },
+    "orderQuery_CreateAccount": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "currencyId": {
+          "type": "string"
+        },
+        "currencyName": {
+          "type": "string"
+        },
+        "ownerId": {
+          "type": "string"
+        },
+        "type": {
+          "$ref": "#/definitions/orderAccountType"
+        }
+      }
+    },
+    "orderQuery_CreateContract": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "buyerCommission": {
+          "type": "number",
+          "format": "double"
+        },
+        "buyerId": {
+          "type": "string"
+        },
+        "frontMetaData": {
+          "$ref": "#/definitions/orderFrontMetaData"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "receiveAddress": {
+          "type": "string"
+        },
+        "sellerCommission": {
+          "type": "number",
+          "format": "double"
+        },
+        "sendingAddress": {
+          "type": "string"
+        }
+      }
+    },
+    "orderQuery_Order": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "available": {
+          "type": "number",
+          "format": "double"
+        },
+        "buyCurrencySymbol": {
+          "type": "string"
+        },
+        "commission": {
+          "type": "number",
+          "format": "double"
+        },
+        "frontMetaData": {
+          "$ref": "#/definitions/orderFrontMetaData"
+        },
+        "id": {
+          "type": "string"
+        },
+        "ownerId": {
+          "type": "string"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "receiveAddress": {
+          "type": "string"
+        },
+        "sellCurrencySymbol": {
+          "type": "string"
+        },
+        "sendingAddress": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/orderDealStatus"
+        }
+      }
+    },
+    "orderResponse_Account": {
+      "type": "object",
+      "properties": {
+        "QueryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        },
+        "created": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderAccount"
+          }
+        },
+        "itemsCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "object": {
+          "$ref": "#/definitions/orderAccount"
+        }
+      }
+    },
+    "orderResponse_AccountBalance": {
+      "type": "object",
+      "properties": {
+        "QueryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        },
+        "object": {
+          "$ref": "#/definitions/orderAccountBalance"
+        }
+      }
+    },
+    "orderResponse_Contract": {
+      "type": "object",
+      "properties": {
+        "QueryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        },
+        "canceled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "created": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderContract"
+          }
+        },
+        "itemsCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "object": {
+          "$ref": "#/definitions/orderContract"
+        }
+      }
+    },
+    "orderResponse_CurrencyQuery": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderCurrency"
+          }
+        },
+        "itemsCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "object": {
+          "$ref": "#/definitions/orderCurrency"
+        },
+        "queryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        }
+      }
+    },
+    "orderResponse_Order": {
+      "type": "object",
+      "properties": {
+        "QueryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        },
+        "canceled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "created": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderOrder"
+          }
+        },
+        "itemsCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "object": {
+          "$ref": "#/definitions/orderOrder"
+        }
+      }
+    },
+    "orderResponse_Participant": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderParticipant"
+          }
+        },
+        "itemsCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "object": {
+          "$ref": "#/definitions/orderParticipant"
+        },
+        "queryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        }
+      }
+    },
+    "orderResponse_Tx": {
+      "type": "object",
+      "properties": {
+        "QueryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        },
+        "confirmed": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "created": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderTx"
+          }
+        },
+        "itemsCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "object": {
+          "$ref": "#/definitions/orderTx"
+        }
+      }
+    },
+    "orderSession": {
+      "type": "object",
+      "properties": {
+        "Token": {
+          "type": "string"
+        }
+      }
+    },
+    "orderTx": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "bsonId": {
+          "type": "string",
+          "format": "byte",
+          "title": "@inject_tag: bson:\"_id,omitempty\""
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "currencySymbol": {
+          "type": "string"
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderTx"
+          }
+        },
+        "fromAddress": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "reason": {
+          "$ref": "#/definitions/orderTxReason"
+        },
+        "related": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderTx"
+          }
+        },
+        "status": {
+          "$ref": "#/definitions/orderTxStatus"
+        },
+        "toAddress": {
+          "type": "string"
+        }
+      }
+    },
+    "orderTxReason": {
+      "type": "object",
+      "properties": {
+        "contractId": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/TxReason_TxReasonStatus"
+        },
+        "txId": {
+          "type": "string"
+        }
+      }
+    },
+    "orderTxStatus": {
+      "type": "string",
+      "default": "UNCONFIRMED",
+      "enum": [
+        "UNCONFIRMED",
+        "COLLATERALIZED",
+        "SAVED",
+        "CONFIRMED",
+        "CANCELED"
+      ]
+    }
+  }
+}

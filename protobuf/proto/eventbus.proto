@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+package structs;
+
+
+import "currency.proto";
+import "user.proto";
+import "account.proto";
+import "transaction.proto";
+import "transaction_processing.proto";
+import "order.proto";
+import "payment_system.proto";
+
+
+
+message Event {
+    oneof Type {
+        EventNewUser NewUser = 1;
+        EventNewAccount NewAccount = 2;
+        EventAccountBalanceChange BalanceChange = 3;
+        EventNewTx NewTransaction = 4;
+        EventTxConfirm TxConfirm = 5;
+        EventNewOrder NewOrder = 6;
+        EventNewContract NewContract = 7;
+        EventOrderChange OrderChange = 8;
+        EventOrderPerformed OrderPerformed = 9;
+        EventContractChange ContractChange = 10;
+        EventContractPerformed ContractPerformed = 11;
+        EventOrderCanceled OrderCanceled = 12;
+        EventPaySystemRawTx PaySystemRawTx = 13;
+        EventNewWithdrawal NewWithdrawalOrder = 14;
+        EventWithdrawalPerformed WithdrawalPerformed = 15;
+        EventNewCurrency NewCurrency = 16;
+        EventCurrencyActivated CurrencyActivated = 17;
+        EventCurrencyDeactivated CurrencyDeactivated = 18;
+        EventAccountUpdate AccountUpdate = 19;
+        EventPaySystemAdded PaySystemAdded = 20;
+        EventETHtxProcces ETHtxPrepared = 21;
+        EventETHtxProcces ETHtxNeedPrepare = 22;
+        EventRelatedPaySystemTx RelatedPaySystemOutTx = 23;
+        EventRelatedPaySystemTx RelatedPaySystemPrepareTx = 24;
+        EventTxProccessUpdate TxProccessUpdate = 25;
+        EventBlockhainAccountUpdate BlockhainAccountUpdate = 26;
+        EventEthInOut EthInOut = 27;
+    }
+}
+
+//service Bus {
+//    rpc Subscribe()
+//}

@@ -1,0 +1,375 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "transaction_processing.proto",
+    "version": "version not set"
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/_v1/create_contract": {
+      "post": {
+        "operationId": "CreateInternalContract",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/orderResponse_Contract"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/orderQuery_CreateContract"
+            }
+          }
+        ],
+        "tags": [
+          "ServiceTransactionProcessing"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "CommissionTypeStatus": {
+      "type": "object",
+      "properties": {
+        "Status": {
+          "$ref": "#/definitions/TypeStatus_ET"
+        },
+        "OrderId": {
+          "type": "string"
+        },
+        "ContractId": {
+          "type": "string"
+        }
+      }
+    },
+    "DealStatusStatus": {
+      "type": "string",
+      "enum": [
+        "CREATED",
+        "PERFORMED",
+        "CANCELED"
+      ],
+      "default": "CREATED"
+    },
+    "TxReason_TxReasonStatus": {
+      "type": "string",
+      "enum": [
+        "UNREASON_TX",
+        "FUND_TX",
+        "WITHDRAW_TX",
+        "SELLER_CONTRACT_TX",
+        "BUYER_CONTRACT_TX",
+        "CONTRACT_COMMISSION_TX"
+      ],
+      "default": "UNREASON_TX"
+    },
+    "TypeStatus_ET": {
+      "type": "string",
+      "enum": [
+        "UNDEFINED",
+        "ORDER",
+        "CONTRACT_SELLER",
+        "CONTRACT_BUYER"
+      ],
+      "default": "UNDEFINED"
+    },
+    "orderCommission": {
+      "type": "object",
+      "properties": {
+        "Currency": {
+          "type": "string"
+        },
+        "SendingAddress": {
+          "type": "string"
+        },
+        "ReceiveAddress": {
+          "type": "string"
+        },
+        "Amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "Remainder": {
+          "type": "number",
+          "format": "double"
+        },
+        "Type": {
+          "$ref": "#/definitions/CommissionTypeStatus"
+        }
+      }
+    },
+    "orderContract": {
+      "type": "object",
+      "properties": {
+        "bsonId": {
+          "type": "string",
+          "format": "byte",
+          "title": "@inject_tag: bson:\"_id,omitempty\""
+        },
+        "id": {
+          "type": "string"
+        },
+        "orderId": {
+          "type": "string"
+        },
+        "sellerId": {
+          "type": "string"
+        },
+        "buyerId": {
+          "type": "string"
+        },
+        "sellerSendAddress": {
+          "type": "string"
+        },
+        "sellerReceiveAddress": {
+          "type": "string"
+        },
+        "buyerSendAddress": {
+          "type": "string"
+        },
+        "buyerReceiveAddress": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "cost": {
+          "type": "number",
+          "format": "double"
+        },
+        "available": {
+          "type": "number",
+          "format": "double"
+        },
+        "price": {
+          "type": "number",
+          "format": "double"
+        },
+        "sellerCommission": {
+          "$ref": "#/definitions/orderCommission"
+        },
+        "buyerCommission": {
+          "$ref": "#/definitions/orderCommission"
+        },
+        "status": {
+          "$ref": "#/definitions/orderDealStatus"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "frontMetaData": {
+          "$ref": "#/definitions/orderFrontMetaData"
+        }
+      }
+    },
+    "orderDealStatus": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/DealStatusStatus"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "orderFrontMetaData": {
+      "type": "object",
+      "properties": {
+        "userName": {
+          "type": "string"
+        },
+        "userPriceInput": {
+          "type": "string"
+        }
+      }
+    },
+    "orderQueryStatus": {
+      "type": "string",
+      "enum": [
+        "Query_Missed",
+        "Query_Success",
+        "Query_Error"
+      ],
+      "default": "Query_Missed"
+    },
+    "orderQuery_CreateContract": {
+      "type": "object",
+      "properties": {
+        "orderId": {
+          "type": "string"
+        },
+        "buyerId": {
+          "type": "string"
+        },
+        "sendingAddress": {
+          "type": "string"
+        },
+        "receiveAddress": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "buyerCommission": {
+          "type": "number",
+          "format": "double"
+        },
+        "sellerCommission": {
+          "type": "number",
+          "format": "double"
+        },
+        "frontMetaData": {
+          "$ref": "#/definitions/orderFrontMetaData"
+        }
+      }
+    },
+    "orderResponse_Contract": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "canceled": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "object": {
+          "$ref": "#/definitions/orderContract"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderContract"
+          }
+        },
+        "itemsCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "QueryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        }
+      }
+    },
+    "orderResponse_Tx": {
+      "type": "object",
+      "properties": {
+        "created": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "confirmed": {
+          "type": "boolean",
+          "format": "boolean"
+        },
+        "object": {
+          "$ref": "#/definitions/orderTx"
+        },
+        "items": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderTx"
+          }
+        },
+        "itemsCount": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "QueryStatus": {
+          "$ref": "#/definitions/orderQueryStatus"
+        }
+      }
+    },
+    "orderTx": {
+      "type": "object",
+      "properties": {
+        "bsonId": {
+          "type": "string",
+          "format": "byte",
+          "title": "@inject_tag: bson:\"_id,omitempty\""
+        },
+        "id": {
+          "type": "string"
+        },
+        "fromAddress": {
+          "type": "string"
+        },
+        "toAddress": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "number",
+          "format": "double"
+        },
+        "currencySymbol": {
+          "type": "string"
+        },
+        "reason": {
+          "$ref": "#/definitions/orderTxReason"
+        },
+        "status": {
+          "$ref": "#/definitions/orderTxStatus"
+        },
+        "related": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderTx"
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/orderTx"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "orderTxReason": {
+      "type": "object",
+      "properties": {
+        "txId": {
+          "type": "string"
+        },
+        "contractId": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/TxReason_TxReasonStatus"
+        }
+      }
+    },
+    "orderTxStatus": {
+      "type": "string",
+      "enum": [
+        "UNCONFIRMED",
+        "COLLATERALIZED",
+        "SAVED",
+        "CONFIRMED",
+        "CANCELED"
+      ],
+      "default": "UNCONFIRMED"
+    }
+  }
+}

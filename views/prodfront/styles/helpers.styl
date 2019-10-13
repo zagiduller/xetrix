@@ -1,0 +1,121 @@
+
+// Adaptive breakpoints for heading sizes
+
+for $size, $width in $grid-breakpoints
+  @media all and (min-width: $width)
+    .body-2-{$size}
+      font-size: $headings.body-2.size !important
+      font-weight: $headings.body-2.weight
+    .body-3-{$size}
+      font-size: $headings.body-3.size !important
+      font-weight: $headings.body-3.weight
+    .body-4-{$size}
+      font-size: $headings.body-4.size !important
+      font-weight: $headings.body-4.weight
+    .body-4-5-{$size}
+      font-size: $headings.body-4-5.size !important
+      font-weight: $headings.body-4-5.weight
+    .body-5-{$size}
+      font-size: $headings.body-5.size !important
+      font-weight: $headings.body-5.weight
+    .body-5-5-{$size}
+      font-size: $headings.body-5-5.size !important
+      font-weight: $headings.body-5-5.weight
+    .body-6-{$size}
+      font-size: $headings.body-6.size !important
+      font-weight: $headings.body-6.weight
+    .body-7-{$size}
+      font-size: $headings.body-7.size !important
+      font-weight: $headings.body-7.weight
+    .body-8-{$size}
+      font-size: $headings.body-8.size !important
+      font-weight: $headings.body-8.weight
+    .body-9-{$size}
+      font-size: $headings.body-9.size !important
+      font-weight: $headings.body-9.weight
+    .body-10-{$size}
+      font-size: $headings.body-10.size !important
+      font-weight: $headings.body-10.weight
+
+.body-2
+  font-size: $headings.body-2.size !important
+  font-weight: $headings.body-2.weight
+.body-3
+  font-size: $headings.body-3.size !important
+  font-weight: $headings.body-3.weight
+.body-4
+  font-size: $headings.body-4.size !important
+  font-weight: $headings.body-4.weight
+.body-4-5
+  font-size: $headings.body-4-5.size !important
+  font-weight: $headings.body-4-5.weight
+.body-5
+  font-size: $headings.body-5.size !important
+  font-weight: $headings.body-5.weight
+.body-5-5
+  font-size: $headings.body-5-5.size !important
+  font-weight: $headings.body-5-5.weight
+.body-6
+  font-size: $headings.body-6.size !important
+  font-weight: $headings.body-6.weight
+.body-7
+  font-size: $headings.body-7.size !important
+  font-weight: $headings.body-7.weight
+.body-8
+  font-size: $headings.body-8.size !important
+  font-weight: $headings.body-8.weight
+.body-9
+  font-size: $headings.body-9.size !important
+  font-weight: $headings.body-9.weight
+.body-10
+  font-size: $headings.body-10.size !important
+  font-weight: $headings.body-10.weight
+
+// Adaptive breakpoints for padding and margins (analog from Bootstrap 4)
+
+for $size, $width in $grid-breakpoints
+  @media all and (min-width: $width)
+    $i = 0
+    for $level, $spacer in $spacers
+      .ma-{$size}-{$i}
+        margin: $spacer.y $spacer.x !important
+      .my-{$size}-{$i}
+        margin-top: $spacer.y !important
+        margin-bottom: $spacer.y !important
+      .mx-{$size}-{$i}
+        margin-left: $spacer.x !important
+        margin-right: $spacer.x !important
+      .mt-{$size}-{$i}
+        margin-top: $spacer.y !important
+      .mr-{$size}-{$i}
+        margin-right: $spacer.x !important
+      .mb-{$size}-{$i}
+        margin-bottom: $spacer.y !important
+      .ml-{$size}-{$i}
+        margin-left: $spacer.x !important
+
+      .pa-{$size}-{$i}
+        padding: $spacer.y $spacer.x !important
+      .py-{$size}-{$i}
+        padding-top: $spacer.y !important
+        padding-bottom: $spacer.y !important
+      .px-{$size}-{$i}
+        padding-left: $spacer.x !important
+        padding-right: $spacer.x !important
+      .pt-{$size}-{$i}
+        padding-top: $spacer.y !important
+      .pr-{$size}-{$i}
+        padding-right: $spacer.x !important
+      .pb-{$size}-{$i}
+        padding-bottom: $spacer.y !important
+      .pl-{$size}-{$i}
+        padding-left: $spacer.x !important
+
+      $i = $i + 1
+for $size, $width in $grid-breakpoints
+  @media all and (min-width: $width)
+    .flex
+      &.{$size}-auto
+        flex-basis: auto !important;
+        flex: 1 1 auto;
+        flex-grow: 1 !important;

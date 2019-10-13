@@ -1,0 +1,108 @@
+[
+  {
+    "service": "currency",
+    "jobs" : [
+      {
+        "method": "CreateCurrency",
+        "payload": "{\"currencies\": [{\"id\": \"1\",\"name\": \"Bitcoin\",\"symbol\": \"BTC\"}]}"
+      },
+      {
+        "method": "CreateCurrency",
+        "payload": "{\"currencies\": [{\"id\": \"2\",\"name\": \"Ethereum\",\"symbol\": \"ETH\"}]}"
+      },
+      {
+        "method": "CreateCurrency",
+        "payload": "{\"currencies\": [{\"id\": \"3\",\"name\": \"Dollar\",\"symbol\": \"USD\"}]}"
+      }
+    ]
+
+  },
+
+  {
+    "service": "participant",
+    "jobs": [
+      {
+        "method":"CreateParticipant",
+        "payload": "{\"id\":\"AAA-PAT-RCK\",\"name\": \"Patrick\"}"
+      },
+      {
+        "method":"CreateParticipant",
+        "payload": "{\"id\":\"Kandrick-007\",\"name\": \"Kandrick\"}"
+      },
+      {
+        "method":"CreateParticipant",
+        "payload": "{\"id\":\"Manager-01\",\"name\": \"Mr Manager\"}"
+      }
+    ]
+  },
+
+  {
+    "service": "account",
+    "jobs": [
+      {
+        "method": "CreateAccount",
+        "payload": "{\"ownerId\": \"AAA-PAT-RCK\",\"currencyName\":\"Bitcoin\",\"type\":0,\"address\":\"int_BTC-XXXX-1\"}"
+      },
+      {
+        "method": "CreateAccount",
+        "payload": "{\"ownerId\": \"AAA-PAT-RCK\",\"currencyName\":\"Ethereum\",\"type\":1,\"address\":\"ext_ETH-XXXX-1\"}"
+      },
+      {
+        "method": "CreateAccount",
+        "payload": "{\"ownerId\": \"AAA-PAT-RCK\",\"currencyName\":\"Dollar\",\"type\":1,\"address\":\"ext_usd-patrick\"}"
+      },
+      {
+        "method": "CreateAccount",
+        "payload": "{\"ownerId\": \"AAA-PAT-RCK\",\"currencyName\":\"Dollar\",\"type\":1,\"address\":\"int_usd-patrick\"}"
+      },
+      {
+        "method": "CreateAccount",
+        "payload": "{\"ownerId\": \"Kandrick-007\",\"currencyName\":\"Ethereum\",\"type\":0,\"address\":\"int_ETH-XXXX-2\"}"
+      },
+      {
+        "method": "CreateAccount",
+        "payload": "{\"ownerId\": \"Kandrick-007\",\"currencyName\":\"Ethereum\",\"type\":1, \"address\":\"ext_ETH-XXXX-3\"}"
+      },
+      {
+        "method": "CreateAccount",
+        "payload": "{\"ownerId\": \"Kandrick-007\",\"currencyName\":\"Dollar\",\"type\":1, \"address\":\"ext_USD-kandrick\"}"
+      },
+      {
+        "method": "CreateAccount",
+        "payload": "{\"ownerId\": \"Manager-01\",\"currencyName\":\"Dollar\",\"type\":0,\"address\":\"system-usd\"}"
+      },
+      {
+        "method": "CreateAccount",
+        "payload": "{\"ownerId\": \"Manager-01\",\"currencyName\":\"Bitcoin\",\"type\":0,\"address\":\"system-btc\"}"
+      }
+    ]
+  },
+
+  {
+    "service": "transaction",
+    "jobs": [
+      {
+        "method":"UnderstandingRawTx",
+        "payload": "{\"from\": \"system-btc\", \"to\": \"int_BTC-XXXX-1\",\"amount\":100}"
+      },
+      {
+        "method":"UnderstandingRawTx",
+        "payload": "{\"from\": \"xxxx\", \"to\": \"int_BTC-XXXX-1\",\"amount\":100}"
+      }
+    ]
+  },
+
+  {
+    "service": "order",
+    "jobs": [
+      {
+        "method":"CreateIntention",
+        "payload": "{\"initiatorId\": \"AAA-PAT-RCK\", \"sellCurrencySymbol\": \"BTC\",\"buyCurrencySymbol\":\"USD\",\"address\":\"int_BTC-XXXX-1\",\"amount\":10,\"price\":100, \"sendingAddress\":\"int_BTC-XXXX-1\", \"receiveAddress\":\"int_usd-patrick\"}"
+      },
+      {
+        "method":"CreateIntention",
+        "payload": "{\"initiatorId\": \"Kandrick-007\", \"sellCurrencySymbol\": \"ETH\",\"buyCurrencySymbol\":\"USD\",\"address\":\"ext_ETH-XXXX-3\",\"amount\":10,\"price\":100, \"sendingAddress\":\"ext_ETH-XXXX-3\", \"receiveAddress\":\"ext_USD-kandrick\"}"
+      }
+    ]
+  }
+]

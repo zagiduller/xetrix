@@ -1,0 +1,11 @@
+[
+  {
+    "service": "transaction",
+    "jobs": [
+      {
+        "method":"UnderstandingRawTx",
+        "payload": "{\"from\": \"int_BTC-XXXX-1\", \"to\": \"system-btc\",\"amount\":5}"
+      }
+    ]
+  }
+]

@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+
+package structs;
+
+import "common.proto";
+import "currency.proto";
+import "order.proto";
+import "account.proto";
+import "transaction.proto";
+import "user.proto";
+import "google/api/annotations.proto";
+
+message EventTxProccessUpdate {
+    Tx tx = 1;
+}
+
+message EventTxConfirm {
+    Tx tx = 1;
+}
+
+message EventETHtxProcces {
+    Currency currency = 1;
+    Account to = 2;
+    User ownerTo = 3;
+    Tx tx = 4;
+}
+
+message Query_TxsPrepareProccess {
+    repeated string txsId = 2;
+}
+
+service ServiceTransactionProcessing {
+    rpc ConfirmTx (Query_Tx) returns (Response_Tx) {
+        option (google.api.http) = {
+            get: "/_v1-a/confirm_tx/{txId}",
+        };
+    }
+    rpc UnderstandingRawTx (Query_RawTx) returns (Response_Tx) {
+        option (google.api.http) = {
+            post: "/_v1-a/rawtx",
+            body: "*"
+        };
+    }
+
+    rpc CreateInternalContract (Query_CreateContract) returns (Response_Contract) {
+        option (google.api.http) = {
+            post: "/_v1/create_contract",
+            body: "*"
+        };
+    }
+
+    rpc NeedPrepareTxs (Query_TxsPrepareProccess) returns (Empty) {
+        option (google.api.http) = {
+            post: "/_v1-a/need-prepare-txs",
+            body: "*"
+        };
+    }
+
+    rpc TxsPrepared (Query_TxsPrepareProccess) returns (Empty) {
+        option (google.api.http) = {
+            post: "/_v1-a/txs-prepared",
+            body: "*"
+        };
+    }
+    //    rpc GenerateInternalAccounts(User) returns (Response_Account) {}
+
+    // !!! Метод создает пользователя
+    //    rpc CreateUserAndAccountGenerate(User)  returns (Response_User) {
+    //        option (google.api.http) = {
+    //            post: "/v2/create_user"
+    //            body: "*"
+    //        };
+    //    }
+}

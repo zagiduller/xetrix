@@ -1,0 +1,10 @@
+node_modules
+.idea
+package-lock.json
+prodfront/package-lock.json
+prodfront/node_modules
+admin/package-lock.json
+admin/node_modules
+
+.nuxt/*
+**/.nuxt/*

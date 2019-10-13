@@ -1,0 +1,9 @@
+0000000000000000000000000000000000000000 94f8a6b14ecac67c9791761a9045eeedb0e518b3 ArthurZagidullin <design.mgn@gmail.com> 1552905720 +0300	commit (initial): init
+94f8a6b14ecac67c9791761a9045eeedb0e518b3 b87397e60af0fe4b1cd971754bd1d166a475fa52 ArthurZagidullin <design.mgn@gmail.com> 1553190170 +0300	commit: Небольшие правки
+b87397e60af0fe4b1cd971754bd1d166a475fa52 95d8fa4061400d541c4a34f6e3e5e2f2eb672280 ArthurZagidullin <design.mgn@gmail.com> 1553529182 +0300	commit: Отключение не используемых REST путей. Открыл создание транзакции для администратора
+95d8fa4061400d541c4a34f6e3e5e2f2eb672280 87bc9842dc181b6f3113d8adff38873a89b636e4 ArthurZagidullin <design.mgn@gmail.com> 1553535937 +0300	commit: Ошибка с дублированием эвентов новых транзакций
+87bc9842dc181b6f3113d8adff38873a89b636e4 7ef379492f61fb28220ea9bede32fced38ae422e ArthurZagidullin <design.mgn@gmail.com> 1554107834 +0300	commit: Транзакции эфира и контрактов на его основе теперь добываются через сервис etherscan.
+7ef379492f61fb28220ea9bede32fced38ae422e 5531458574a716b16019bd15104b2eabc99927f1 ArthurZagidullin <design.mgn@gmail.com> 1554244471 +0300	commit: Очень много изменений. Основное - перевод системы на работу чисто с эфиром и производными токенами. Работа через сервис etherscan.
+5531458574a716b16019bd15104b2eabc99927f1 166e51cdd2c493058979bca7cbac5951b8036491 ArthurZagidullin <design.mgn@gmail.com> 1554640164 +0300	commit: Активация-деактивация валют. Учет номеров блоков при обработке транзакций. Учет номера блока при добавлении счетов
+166e51cdd2c493058979bca7cbac5951b8036491 bedd08810bf4563e896d48894fd02ce83df1da3e ArthurZagidullin <design.mgn@gmail.com> 1554666239 +0300	commit: Активация-деактивация валют #fix
+bedd08810bf4563e896d48894fd02ce83df1da3e a08593fc74b419f47bc8f9f453bcd0d9de6642b1 ArthurZagidullin <design.mgn@gmail.com> 1555580795 +0300	commit: Изменение принципа обнаружения транзакций Ethereum

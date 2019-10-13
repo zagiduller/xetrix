@@ -1,0 +1,14 @@
+{"currencies": [
+  {
+    "name": "Bitcoin",
+    "symbol": "BTC"
+  },
+  {
+    "name": "Etherium",
+    "symbol": "ETH"
+  },
+  {
+    "name": "Dollar",
+    "symbol": "USD"
+  }
+]}

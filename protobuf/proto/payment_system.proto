@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package structs;
+
+import "common.proto";
+import "currency.proto";
+import "account.proto";
+import "transaction.proto";
+import "order.proto";
+import "google/api/annotations.proto";
+
+
+message EventPaySystemRawTx {
+    Query_RawTx raw = 1;
+}
+
+message EventRelatedPaySystemTx {
+    string txId = 1;
+    string relatedId = 2;
+}
+
+message EventPaySystemAdded {
+    Currency currency = 1;
+}
+
+message PaymentSystem {
+    Currency currency = 1;
+}
+
+service PaymentSystemRegistry {
+    rpc GenerateAccount(Currency) returns (Account) {}
+}
+
+
+message EventEthInOut {
+    enum direction {
+        UNDIRECT = 0;
+        IN = 1;
+        OUT = 2;
+    }
+    string token = 1;
+    string address = 2;
+    string txId = 3;
+    string amount = 4;
+    direction type = 5;
+    string contractAddress = 6;
+}
+
+message EthAddress {
+    string address = 1;
+    string derivationPath = 2;
+    string contractAddress = 3;
+    string ethBalance = 5;
+    string tokenBalance = 6;
+    repeated EventEthInOut ethTxs = 7;
+    repeated EventEthInOut tokenTxs = 8;
+}
+
+message Query_FundWithdrawEth {
+    string address = 1;
+    double amount = 2;
+}
+
+message Response_EthAddress {
+    repeated EthAddress addresses = 1;
+}
+
+service EthTokenService {
+    rpc GetAll (Empty) returns (Response_EthAddress) {
+    }
+    rpc FundFee (Query_FundWithdrawEth) returns (Bool) {
+    }
+    rpc Withdraw (Query_FundWithdrawEth) returns (Bool) {
+    }
+}

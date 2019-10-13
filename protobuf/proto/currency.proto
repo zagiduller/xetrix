@@ -1,0 +1,86 @@
+syntax = "proto3";
+
+
+import "common.proto";
+import "google/api/annotations.proto";
+
+package structs;
+
+message EventNewCurrency {
+    Currency currency = 1;
+}
+
+message EventCurrencyActivated {
+    Currency currency = 1;
+}
+
+message EventCurrencyDeactivated {
+    Currency currency = 1;
+}
+
+message Currency {
+    // @inject_tag: bson:"_id,omitempty"
+    bytes bsonId = 6;
+    string contractId = 7;
+    string id = 1;
+
+    string name = 2;
+    string symbol = 3;
+    uint32 decimal = 4;
+
+    enum _currencyType {
+        CRYPTO_CURRENCY = 0;
+        FIAT_CURRENCY = 1;
+        ETH_CONTRACT_TOKEN = 2;
+    }
+
+    _currencyType type = 5;
+
+    bool active = 8;
+
+    uint32 inc = 9;
+}
+
+message Query_CreateCurrency {
+    Currency object = 1;
+    repeated Currency items = 2;
+}
+
+message Query_Currency {
+    string id = 1;
+    string name = 2;
+    string symbol = 4;
+    bool active = 5;
+}
+
+message Response_CurrencyQuery {
+    bool created = 1;
+    Currency object = 2;
+    repeated Currency items = 3;
+    uint32 itemsCount = 4;
+    QueryStatus queryStatus = 5;
+}
+
+
+
+
+service ServiceCurrency {
+    rpc CreateCurrency (Query_CreateCurrency) returns (Response_CurrencyQuery) {
+        option (google.api.http) = {
+            post: "/_v1-a/create_currency",
+            body: "*"
+        };
+    }
+    rpc GetCurrency (Query_Currency) returns (Response_CurrencyQuery) {
+    }
+    rpc Activate (Query_Currency) returns (Currency) {
+        option (google.api.http) = {
+            get: "/_v1-a/activate_currency/{id}",
+        };
+    }
+    rpc Deactivate (Query_Currency) returns (Currency) {
+        option (google.api.http) = {
+            get: "/_v1-a/deactivate_currency/{id}",
+        };
+    }
+}

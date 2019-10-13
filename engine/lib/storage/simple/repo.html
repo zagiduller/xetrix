@@ -1,0 +1,414 @@
+use 'godoc cmd/mxp-repository' for documentation on the mxp-repository command 
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script type='text/javascript'>
+	document.ANALYSIS_DATA = ;
+	document.CALLGRAPH = ;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "mxp-repository"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+			</div>
+		</div>
+		
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="#Repository">type Repository</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.CreateAccount">func (r *Repository) CreateAccount(acc *pb.Account) *pb.Account</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.CreateContract">func (repo *Repository) CreateContract(c *pb.Contract) (*pb.Contract, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.CreateCurrency">func (repo *Repository) CreateCurrency(currency *pb.Currency) (*pb.Currency, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.CreateOrder">func (repo *Repository) CreateOrder(in *pb.Order) *pb.Order</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.CreateParticipant">func (repo *Repository) CreateParticipant(participant *pb.Participant) (*pb.Participant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.FindAccountByAddress">func (r *Repository) FindAccountByAddress(address string) *pb.Account</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.FindAccountById">func (r *Repository) FindAccountById(id string) *pb.Account</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.FindAccountByOwnerId">func (r *Repository) FindAccountByOwnerId(id string) []*pb.Account</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.FindByNamePassword">func (repo *Repository) FindByNamePassword(participant *pb.Participant) (*pb.Participant, error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.FindCurrency">func (repo *Repository) FindCurrency(req *pb.Query_Currency) *pb.Currency</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.FindParticipant">func (repo *Repository) FindParticipant(id string) *pb.Participant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.GetAllAccount">func (r *Repository) GetAllAccount() []*pb.Account</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.GetAllCurrency">func (repo *Repository) GetAllCurrency() []*pb.Currency</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.GetAllParticipant">func (repo *Repository) GetAllParticipant() []*pb.Participant</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.GetContract">func (repo *Repository) GetContract(req *pb.Query_Contract) (cs []*pb.Contract)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.GetOrder">func (repo *Repository) GetOrder(req *pb.Query_Order) *pb.Response_Order</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.GetTx">func (repo *Repository) GetTx(req *pb.Query_Tx) *pb.Tx</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.GetTxs">func (repo *Repository) GetTxs(req *pb.Query_Tx) []*pb.Tx</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#Repository.SaveTx">func (repo *Repository) SaveTx(tx *pb.Tx) (*pb.Tx, error)</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="/src/mxp/mxp-repositorytory/account.go">account.go</a>
+			
+				<a href="/src/mxp/mxp-repositorytory/currency.go">currency.go</a>
+			
+				<a href="/src/mxp/mxp-repositorytory/order.go">order.go</a>
+			
+				<a href="/src/mxp/mxp-repositorytory/participant.go">participant.go</a>
+			
+				<a href="/src/mxp/mxp-repositorytory/repo.go">repo.go</a>
+			
+				<a href="/src/mxp/mxp-repositorytory/transaction.go">transaction.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		<div id="pkg-callgraph" class="toggle" style="display: none">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Internal Call Graph section">Internal call graph ▹</h2>
+		</div> <!-- .expanded -->
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Internal Call Graph section">Internal call graph ▾</h2>
+			<p>
+			  In the call graph viewer below, each node
+			  is a function belonging to this package
+			  and its children are the functions it
+			  calls&mdash;perhaps dynamically.
+			</p>
+			<p>
+			  The root nodes are the entry points of the
+			  package: functions that may be called from
+			  outside the package.
+			  There may be non-exported or anonymous
+			  functions among them if they are called
+			  dynamically from another package.
+			</p>
+			<p>
+			  Click a node to visit that function's source code.
+			  From there you can visit its callers by
+			  clicking its declaring <code>func</code>
+			  token.
+			</p>
+			<p>
+			  Functions may be omitted if they were
+			  determined to be unreachable in the
+			  particular programs or tests that were
+			  analyzed.
+			</p>
+			<!-- Zero means show all package entry points. -->
+			<ul style="margin-left: 0.5in" id="callgraph-0" class="treeview"></ul>
+		</div>
+		</div> <!-- #pkg-callgraph -->
+
+		
+		
+		
+		
+			
+			
+			<h2 id="Repository">type <a href="/src/target/repo.go?s=204:394#L1">Repository</a>
+				<a class="permalink" href="#Repository">&#xb6;</a>
+			</h2>
+			<p>
+Repository - Dummy repository, this simulates the use of a datastore
+of some kind. We&#39;ll replace this with a real implementation later on.
+</p>
+
+			<pre>type Repository struct {
+    <span class="comment">// contains filtered or unexported fields</span>
+}</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="Repository.CreateAccount">func (*Repository) <a href="/src/target/account.go?s=85:148#L1">CreateAccount</a>
+					<a class="permalink" href="#Repository.CreateAccount">&#xb6;</a>
+				</h3>
+				<pre>func (r *<a href="#Repository">Repository</a>) CreateAccount(acc *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Account">Account</a>) *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Account">Account</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.CreateContract">func (*Repository) <a href="/src/target/order.go?s=1534:1610#L66">CreateContract</a>
+					<a class="permalink" href="#Repository.CreateContract">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) CreateContract(c *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Contract">Contract</a>) (*<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Contract">Contract</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.CreateCurrency">func (*Repository) <a href="/src/target/currency.go?s=85:168#L1">CreateCurrency</a>
+					<a class="permalink" href="#Repository.CreateCurrency">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) CreateCurrency(currency *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Currency">Currency</a>) (*<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Currency">Currency</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.CreateOrder">func (*Repository) <a href="/src/target/order.go?s=92:151#L1">CreateOrder</a>
+					<a class="permalink" href="#Repository.CreateOrder">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) CreateOrder(in *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Order">Order</a>) *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Order">Order</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.CreateParticipant">func (*Repository) <a href="/src/target/participant.go?s=92:187#L1">CreateParticipant</a>
+					<a class="permalink" href="#Repository.CreateParticipant">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) CreateParticipant(participant *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Participant">Participant</a>) (*<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Participant">Participant</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.FindAccountByAddress">func (*Repository) <a href="/src/target/account.go?s=427:496#L16">FindAccountByAddress</a>
+					<a class="permalink" href="#Repository.FindAccountByAddress">&#xb6;</a>
+				</h3>
+				<pre>func (r *<a href="#Repository">Repository</a>) FindAccountByAddress(address <a href="/pkg/builtin/#string">string</a>) *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Account">Account</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.FindAccountById">func (*Repository) <a href="/src/target/account.go?s=281:340#L7">FindAccountById</a>
+					<a class="permalink" href="#Repository.FindAccountById">&#xb6;</a>
+				</h3>
+				<pre>func (r *<a href="#Repository">Repository</a>) FindAccountById(id <a href="/pkg/builtin/#string">string</a>) *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Account">Account</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.FindAccountByOwnerId">func (*Repository) <a href="/src/target/account.go?s=593:659#L25">FindAccountByOwnerId</a>
+					<a class="permalink" href="#Repository.FindAccountByOwnerId">&#xb6;</a>
+				</h3>
+				<pre>func (r *<a href="#Repository">Repository</a>) FindAccountByOwnerId(id <a href="/pkg/builtin/#string">string</a>) []*<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Account">Account</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.FindByNamePassword">func (*Repository) <a href="/src/target/participant.go?s=672:768#L23">FindByNamePassword</a>
+					<a class="permalink" href="#Repository.FindByNamePassword">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) FindByNamePassword(participant *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Participant">Participant</a>) (*<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Participant">Participant</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.FindCurrency">func (*Repository) <a href="/src/target/currency.go?s=421:494#L11">FindCurrency</a>
+					<a class="permalink" href="#Repository.FindCurrency">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) FindCurrency(req *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Query_Currency">Query_Currency</a>) *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Currency">Currency</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.FindParticipant">func (*Repository) <a href="/src/target/participant.go?s=512:578#L14">FindParticipant</a>
+					<a class="permalink" href="#Repository.FindParticipant">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) FindParticipant(id <a href="/pkg/builtin/#string">string</a>) *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Participant">Participant</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.GetAllAccount">func (*Repository) <a href="/src/target/account.go?s=799:849#L35">GetAllAccount</a>
+					<a class="permalink" href="#Repository.GetAllAccount">&#xb6;</a>
+				</h3>
+				<pre>func (r *<a href="#Repository">Repository</a>) GetAllAccount() []*<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Account">Account</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.GetAllCurrency">func (*Repository) <a href="/src/target/currency.go?s=336:391#L7">GetAllCurrency</a>
+					<a class="permalink" href="#Repository.GetAllCurrency">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) GetAllCurrency() []*<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Currency">Currency</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.GetAllParticipant">func (*Repository) <a href="/src/target/participant.go?s=419:480#L10">GetAllParticipant</a>
+					<a class="permalink" href="#Repository.GetAllParticipant">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) GetAllParticipant() []*<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Participant">Participant</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.GetContract">func (*Repository) <a href="/src/target/order.go?s=1797:1876#L77">GetContract</a>
+					<a class="permalink" href="#Repository.GetContract">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) GetContract(req *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Query_Contract">Query_Contract</a>) (cs []*<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Contract">Contract</a>)</pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.GetOrder">func (*Repository) <a href="/src/target/order.go?s=254:326#L6">GetOrder</a>
+					<a class="permalink" href="#Repository.GetOrder">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) GetOrder(req *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Query_Order">Query_Order</a>) *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Response_Order">Response_Order</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.GetTx">func (*Repository) <a href="/src/target/transaction.go?s=1386:1440#L56">GetTx</a>
+					<a class="permalink" href="#Repository.GetTx">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) GetTx(req *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Query_Tx">Query_Tx</a>) *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Tx">Tx</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.GetTxs">func (*Repository) <a href="/src/target/transaction.go?s=361:418#L11">GetTxs</a>
+					<a class="permalink" href="#Repository.GetTxs">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) GetTxs(req *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Query_Tx">Query_Tx</a>) []*<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Tx">Tx</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="Repository.SaveTx">func (*Repository) <a href="/src/target/transaction.go?s=92:149#L1">SaveTx</a>
+					<a class="permalink" href="#Repository.SaveTx">&#xb6;</a>
+				</h3>
+				<pre>func (repo *<a href="#Repository">Repository</a>) SaveTx(tx *<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Tx">Tx</a>) (*<a href="/pkg/mxp-protobuf/pkg/">pb</a>.<a href="/pkg/mxp-protobuf/pkg/#Tx">Tx</a>, <a href="/pkg/builtin/#error">error</a>)</pre>
+				
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+

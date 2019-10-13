@@ -1,0 +1,39 @@
+engine:
+  host: localhost
+  port: 50051
+  admin:
+    name: "Administrator"
+    password: "AdministratorPassword"
+  database:
+    type: leveldb
+    dbpath: ../data
+  email: # В разработке
+    host: smtp.gmail.com
+    port: ":465"
+    from: robot@example.com
+    username: example@eample.com
+    password: password
+  services:
+    auth:
+      secretKey: "Секретный ключ ваших сессий"
+    commission:
+      systemId: ""
+      rule: 0.01 # Размер комиссии со сделок
+  payments:
+    ethereum:
+      apikey: "Ключ API сервиса etherscan.io"
+      masterAddress: "Мастер-счет ethereum на котором будут аккумулироваться средства"
+      mnemonic: "Mnemonic-кодовая фраза ethereum из 12 слов"
+      derivationTemplate: "m/44'/60'/0'/{{.CurInc}}/{{.UsrInc}}" #Не менять!
+    yandexmoney:
+      secret: "01234567890ABCDEF01234567890"  #Проверка целостности yandex-транзакций
+rest_gateway:
+  type: http  # https
+  certsdir: certs
+  domains: "example.com,www.example.com"  # Список доменов для автоустановки сертификатов Let's Encrypt
+  port: 8080
+  views:  # пути к статике
+    front: ../views/front/dist
+    admin: ../views/admin/dist
+    stripfront: /front/dist
+    stripadmin: /admin

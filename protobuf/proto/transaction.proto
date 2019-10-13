@@ -1,0 +1,111 @@
+syntax = "proto3";
+
+
+package structs;
+
+import "common.proto";
+import "google/api/annotations.proto";
+
+
+message EventNewTx {
+    Tx tx = 1;
+}
+
+enum TxStatus {
+    UNCONFIRMED = 0;
+    COLLATERALIZED = 1;
+    SAVED = 2;
+    CONFIRMED = 3;
+    CANCELED = 4;
+}
+
+message Query_Tx {
+    string txId = 1;
+    string contractId = 2;
+    TxReason reason = 3;
+    string address = 4;
+    string fromAddress = 5;
+    string toAddress = 6;
+    string inPStxId = 7;
+    uint64 blockNumber = 8;
+}
+
+message Query_RawTx {
+    string fromAddress = 1;
+    string toAddress = 2;
+    double amount = 3;
+    string inPStxId = 4;
+    uint64 blockNumber = 5;
+}
+
+message Response_Tx {
+    bool created = 1;
+    bool confirmed = 2;
+    Tx object = 3;
+    repeated Tx items = 4;
+
+    uint32 itemsCount = 5;
+
+    QueryStatus QueryStatus = 6;
+}
+
+
+message TxReason {
+    string txId = 1;
+    string contractId = 2;
+    string withdrawalOrderId = 3;
+    _TxReasonStatus status = 4;
+
+    //In-Out payment system transaction Ids
+    string inPStxId = 5;
+    string outPStxId = 6;
+    string preparePStxId = 7;
+
+    uint64 blockNumber = 8;
+
+    enum _TxReasonStatus {
+        UNREASON_TX = 0;
+        FUND_UNPERFORMED_TX = 1;
+        FUND_WAIT_PREPARE_TX = 2;
+        FUND_PREPARED_TX = 3;
+        FUND_PERFORMED_TX = 4;
+        WITHDRAW_TX = 5;
+        SELLER_CONTRACT_TX = 6;
+        BUYER_CONTRACT_TX = 7;
+        CONTRACT_COMMISSION_TX = 8;
+    }
+}
+
+message Tx {
+    // @inject_tag: bson:"_id,omitempty"
+    bytes bsonId = 7;
+    string id = 1;
+    string fromAddress = 2;
+    string toAddress = 3;
+    double amount = 4;
+    string currencySymbol = 5;
+    TxReason reason = 6;
+    TxStatus status = 8;
+
+    repeated Tx related = 9;
+    repeated Tx dependencies = 10;
+
+    string fromAddressOwnerId = 11;
+    string toAddressOwnerId = 12;
+
+    string createdAt = 13;
+}
+
+
+
+service ServiceTransaction {
+    rpc CreateTx (Tx) returns (Response_Tx) {
+        option (google.api.http) = {
+            post: "/_v1-a/create_tx",
+            body: "*"
+        };
+    }
+    rpc GetTx (Query_Tx) returns (Response_Tx) {
+    }
+    rpc GetAllTxs (Empty) returns (Response_Tx) {}
+}

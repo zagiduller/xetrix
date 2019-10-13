@@ -1,0 +1,4 @@
+.idea
+vendor
+certs
+config/app.yml
