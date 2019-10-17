@@ -115,10 +115,10 @@ func (s *ServiceEthToken) GetAll(ctx context.Context, empty *structs.Empty) (*st
 }
 
 func (s *ServiceEthToken) FundFee(ctx context.Context, q *structs.Query_FundWithdrawEth) (*structs.Bool, error) {
-	if addr, ok := s.addresses[q.Address]; ok {
-		log.Printf("ServiceEthToken: FromMaster: master path: %s", s.admDrvt)
+// 	if addr, ok := s.addresses[q.Address]; ok {
+// 		log.Printf("ServiceEthToken: FromMaster: master path: %s", s.admDrvt)
 
-	}
+// 	}
 
 	return nil, nil
 }
