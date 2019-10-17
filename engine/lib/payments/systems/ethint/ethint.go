@@ -162,16 +162,16 @@ func (e *Ethint) CreateTokenTransferData(to string, amount float64) []byte {
 	return data
 }
 
-func (e *Ethint) CreateTx(drvPathFrom, addressTo string, amount string, data []byte) {
-	//log.Printf("Ethint: CreateTx from %s ")
-	log.Printf("Ethint: CreateTx: from path: %s to %s", drvPathFrom, addressTo)
-	fromAccount, err := e.wallet.Derive(hdwallet.MustParseDerivationPath(drvPathFrom), true)
-	if err != nil {
-		log.Printf("Ethint: CreateTx: %s", err)
-		return
-	}
+// func (e *Ethint) CreateTx(drvPathFrom, addressTo string, amount string, data []byte) {
+// 	//log.Printf("Ethint: CreateTx from %s ")
+// 	log.Printf("Ethint: CreateTx: from path: %s to %s", drvPathFrom, addressTo)
+// 	fromAccount, err := e.wallet.Derive(hdwallet.MustParseDerivationPath(drvPathFrom), true)
+// 	if err != nil {
+// 		log.Printf("Ethint: CreateTx: %s", err)
+// 		return
+// 	}
 
-}
+// }
 
 // Пополнение токен счета клиента что бы вывести с него средства
 func (e *Ethint) RelatedPrepareTxFromAdmin(c *structs.Currency, u *structs.User, a *structs.Account, tx *structs.Tx) {
