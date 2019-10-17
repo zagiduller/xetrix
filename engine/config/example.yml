@@ -21,9 +21,9 @@ engine:
       rule: 0.01 # Размер комиссии со сделок
   payments:
     ethereum:
-      apikey: "Ключ API сервиса etherscan.io"
+      apikey: "" # Ключ API сервиса etherscan.io
       masterAddress: "Мастер-счет ethereum на котором будут аккумулироваться средства"
-      mnemonic: "Mnemonic-кодовая фраза ethereum из 12 слов"
+      mnemonic: "Mnemonic-кодовая фраза ethereum из 12 слов"      #Можно сгенерировать на сайте https://iancoleman.io/bip39/?#english
       derivationTemplate: "m/44'/60'/0'/{{.CurInc}}/{{.UsrInc}}" #Не менять!
     yandexmoney:
       secret: "01234567890ABCDEF01234567890"  #Проверка целостности yandex-транзакций
